@@ -1,0 +1,47 @@
+# mhwd Driver Config
+
+NAME="video-vesa"
+INFO="X.org vesa video driver."
+VERSION="2012.05.26"
+FREEDRIVER="true"
+PRIORITY="0"
+
+CLASSIDS="0300"
+VENDORIDS="*"
+DEVICEIDS="*"
+
+# Dependencies
+DEPENDS="xf86-video-vesa"
+
+
+XORGFILE="/etc/X11/mhwd.d/vesa.conf"
+
+
+post_install()
+{
+	MHWD_HEADING "${XORGFILE}"
+
+	echo 'Section "Device"' >> "${XORGFILE}"
+	echo '	Identifier  "DeviceIntel"' >> "${XORGFILE}"
+	echo '	Driver      "vesa"' >> "${XORGFILE}"
+	echo 'EndSection' >> "${XORGFILE}"
+	echo ' ' >> "${XORGFILE}"
+
+	MHWD_ADD_DRI "${XORGFILE}"
+	MHWD_ADD_COMPOSITING "${XORGFILE}"
+	MHWD_ADD_BACKSPACE "${XORGFILE}"
+
+	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+}
+
+
+
+post_remove()
+{
+	if [ -e "${XORGFILE}" ]; then
+		rm "${XORGFILE}"
+	fi
+
+	mhwd-gpu --check
+}
+
