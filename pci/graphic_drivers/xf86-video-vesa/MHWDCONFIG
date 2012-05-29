@@ -22,7 +22,7 @@ post_install()
 	MHWD_HEADING "${XORGFILE}"
 
 	echo 'Section "Device"' >> "${XORGFILE}"
-	echo '	Identifier  "Device"' >> "${XORGFILE}"
+	echo '	Identifier  "Device0"' >> "${XORGFILE}"
 	echo '	Driver      "vesa"' >> "${XORGFILE}"
 	echo 'EndSection' >> "${XORGFILE}"
 	echo ' ' >> "${XORGFILE}"
