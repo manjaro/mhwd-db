@@ -23,7 +23,7 @@ post_install()
 	MHWD_HEADING "${XORGFILE}"
 
 	echo 'Section "Device"' >> "${XORGFILE}"
-	echo '	Identifier  "DeviceIntel"' >> "${XORGFILE}"
+	echo '	Identifier  "Device0"' >> "${XORGFILE}"
 	echo '	Driver      "radeon"' >> "${XORGFILE}"
 	echo 'EndSection' >> "${XORGFILE}"
 	echo ' ' >> "${XORGFILE}"
