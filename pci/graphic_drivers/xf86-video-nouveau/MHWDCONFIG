@@ -21,13 +21,7 @@ XORGFILE="/etc/X11/mhwd.d/nouveau.conf"
 post_install()
 {
 	MHWD_HEADING "${XORGFILE}"
-
-	echo 'Section "Device"' >> "${XORGFILE}"
-	echo '	Identifier  "Device0"' >> "${XORGFILE}"
-	echo '	Driver      "nouveau"' >> "${XORGFILE}"
-	echo 'EndSection' >> "${XORGFILE}"
-	echo ' ' >> "${XORGFILE}"
-
+	MHWD_ADD_DEVICE_SECTION "nouveau" "${XORGFILE}"
 	MHWD_ADD_DRI "${XORGFILE}"
 	MHWD_ADD_COMPOSITING "${XORGFILE}"
 	MHWD_ADD_BACKSPACE "${XORGFILE}"

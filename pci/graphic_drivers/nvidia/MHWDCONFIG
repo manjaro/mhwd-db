@@ -1,0 +1,52 @@
+# mhwd Driver Config
+
+NAME="video-nvidia"
+INFO="Closed source NVIDIA drivers for linux."
+VERSION="2012.05.26"
+FREEDRIVER="false"
+PRIORITY="2"
+
+CLASSIDS="0300"
+VENDORIDS="10de"
+DEVICEIDS=">/var/lib/mhwd/ids/pci/nvidia.ids"
+
+# Dependencies
+DEPENDS="nvidia-kernel-modules nvidia-utils"
+DEPENDS_64="lib32-nvidia-utils"
+
+
+XORGFILE="/etc/X11/mhwd.d/nvidia.conf"
+
+
+
+fix_screen_flickering()
+{
+	sed -i /'Section "Device"'/,/'EndSection'/s/'EndSection'/"\tOption \"RegistryDwords\" \"PowerMizerEnable=0x1; PerfLevelSrc=0x2222; PowerMizerDefault=0x2; PowerMizerDefaultAC=0x1\"\nEndSection"/g "${XORGFILE}"
+}
+
+
+
+post_install()
+{
+	nvidia-xconfig -o "${XORGFILE}" --composite &>/dev/null
+	MHWD_ADD_BACKSPACE "${XORGFILE}"
+
+	# Remove logo
+	sed -i /'Section "Device"'/,/'EndSection'/s/'EndSection'/"\tOption \"NoLogo\" \"1\"\nEndSection"/g "${XORGFILE}"
+
+	# TODO: Pass ids to script and check for devices to fix screen flickering
+
+	mhwd-gpu --setgl nvidia --setxorg "${XORGFILE}"
+}
+
+
+
+post_remove()
+{
+	if [ -e "${XORGFILE}" ]; then
+		rm "${XORGFILE}"
+	fi
+
+	mhwd-gpu --check
+}
+
