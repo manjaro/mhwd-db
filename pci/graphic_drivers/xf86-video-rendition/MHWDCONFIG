@@ -1,0 +1,41 @@
+# mhwd Driver Config
+
+NAME="video-rendition"
+INFO="X.org rendition video driver. Standard open source driver for rendition graphic cards."
+VERSION="2012.05.31"
+FREEDRIVER="true"
+PRIORITY="1"
+
+CLASSIDS="0300"
+VENDORIDS="1163"
+DEVICEIDS="*"
+
+# Dependencies
+DEPENDS="xf86-video-rendition"
+
+
+XORGFILE="/etc/X11/mhwd.d/rendition.conf"
+
+
+post_install()
+{
+	MHWD_HEADING "${XORGFILE}"
+	MHWD_ADD_DEVICE_SECTION "rendition" "${XORGFILE}"
+	MHWD_ADD_DRI "${XORGFILE}"
+	MHWD_ADD_COMPOSITING "${XORGFILE}"
+	MHWD_ADD_BACKSPACE "${XORGFILE}"
+
+	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+}
+
+
+
+post_remove()
+{
+	if [ -e "${XORGFILE}" ]; then
+		rm "${XORGFILE}"
+	fi
+
+	mhwd-gpu --check
+}
+

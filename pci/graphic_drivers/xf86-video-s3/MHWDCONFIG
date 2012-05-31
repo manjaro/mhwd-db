@@ -1,0 +1,41 @@
+# mhwd Driver Config
+
+NAME="video-s3"
+INFO="X.org s3 video driver. Standard open source driver for s3 graphic cards."
+VERSION="2012.05.31"
+FREEDRIVER="true"
+PRIORITY="1"
+
+CLASSIDS="0300"
+VENDORIDS="5333"
+DEVICEIDS="0551 8811 8812 8814 8880 88B0 88C0 88C1 88D0 88D1 88F0 8901 8902 8904 8A13 8D01 8D02"
+
+# Dependencies
+DEPENDS="xf86-video-s3"
+
+
+XORGFILE="/etc/X11/mhwd.d/s3.conf"
+
+
+post_install()
+{
+	MHWD_HEADING "${XORGFILE}"
+	MHWD_ADD_DEVICE_SECTION "s3" "${XORGFILE}"
+	MHWD_ADD_DRI "${XORGFILE}"
+	MHWD_ADD_COMPOSITING "${XORGFILE}"
+	MHWD_ADD_BACKSPACE "${XORGFILE}"
+
+	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+}
+
+
+
+post_remove()
+{
+	if [ -e "${XORGFILE}" ]; then
+		rm "${XORGFILE}"
+	fi
+
+	mhwd-gpu --check
+}
+

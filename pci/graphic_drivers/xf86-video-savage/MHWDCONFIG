@@ -1,0 +1,41 @@
+# mhwd Driver Config
+
+NAME="video-savage"
+INFO="X.org savage video driver. Standard open source driver for S3 savage graphic cards."
+VERSION="2012.05.31"
+FREEDRIVER="true"
+PRIORITY="1"
+
+CLASSIDS="0300"
+VENDORIDS="5333"
+DEVICEIDS="8A20 8A21 8A22 8A25 8A26 8C10 8C11 8C12 8C13 8C22 8C24 8C26 8C2A 8C2B 8C2C 8C2D 8C2E 8C2F 8D03 8D04 9102"
+
+# Dependencies
+DEPENDS="xf86-video-savage"
+
+
+XORGFILE="/etc/X11/mhwd.d/savage.conf"
+
+
+post_install()
+{
+	MHWD_HEADING "${XORGFILE}"
+	MHWD_ADD_DEVICE_SECTION "savage" "${XORGFILE}"
+	MHWD_ADD_DRI "${XORGFILE}"
+	MHWD_ADD_COMPOSITING "${XORGFILE}"
+	MHWD_ADD_BACKSPACE "${XORGFILE}"
+
+	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+}
+
+
+
+post_remove()
+{
+	if [ -e "${XORGFILE}" ]; then
+		rm "${XORGFILE}"
+	fi
+
+	mhwd-gpu --check
+}
+

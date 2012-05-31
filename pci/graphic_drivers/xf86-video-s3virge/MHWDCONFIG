@@ -1,0 +1,41 @@
+# mhwd Driver Config
+
+NAME="video-s3virge"
+INFO="X.org s3virge video driver. Standard open source driver for s3virge graphic cards."
+VERSION="2012.05.31"
+FREEDRIVER="true"
+PRIORITY="1"
+
+CLASSIDS="0300"
+VENDORIDS="5333"
+DEVICEIDS="5631 883D 8A01 8A10 8C01 8C02 8C03"
+
+# Dependencies
+DEPENDS="xf86-video-s3virge"
+
+
+XORGFILE="/etc/X11/mhwd.d/s3virge.conf"
+
+
+post_install()
+{
+	MHWD_HEADING "${XORGFILE}"
+	MHWD_ADD_DEVICE_SECTION "s3virge" "${XORGFILE}"
+	MHWD_ADD_DRI "${XORGFILE}"
+	MHWD_ADD_COMPOSITING "${XORGFILE}"
+	MHWD_ADD_BACKSPACE "${XORGFILE}"
+
+	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+}
+
+
+
+post_remove()
+{
+	if [ -e "${XORGFILE}" ]; then
+		rm "${XORGFILE}"
+	fi
+
+	mhwd-gpu --check
+}
+
