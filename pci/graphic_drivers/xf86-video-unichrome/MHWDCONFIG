@@ -1,26 +1,26 @@
 # mhwd Driver Config
 
-NAME="video-tdfx"
-INFO="X.org tdfx video driver. Standard open source driver for 3DFX graphic cards."
+NAME="video-unichrome"
+INFO="X.org unichrome video driver. Standard open source driver for VIA graphic cards."
 VERSION="2012.05.31"
 FREEDRIVER="true"
 PRIORITY="1"
 
 CLASSIDS="0300"
-VENDORIDS="121a"
-DEVICEIDS="0003 0005 0009"
+VENDORIDS="1106"
+DEVICEIDS="3108 3118 3157 3343 3344 7205"
 
 # Dependencies
-DEPENDS="xf86-video-tdfx"
+DEPENDS="xf86-video-unichrome"
 
 
-XORGFILE="/etc/X11/mhwd.d/tdfx.conf"
+XORGFILE="/etc/X11/mhwd.d/unichrome.conf"
 
 
 post_install()
 {
 	MHWD_HEADING "${XORGFILE}"
-	MHWD_ADD_DEVICE_SECTION "tdfx" "${XORGFILE}"
+	MHWD_ADD_DEVICE_SECTION "unichrome" "${XORGFILE}"
 	MHWD_ADD_DRI "${XORGFILE}"
 	MHWD_ADD_COMPOSITING "${XORGFILE}"
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
