@@ -1,0 +1,41 @@
+# mhwd Driver Config
+
+NAME="video-mach64"
+INFO="X.org mach64 video driver. Standard open source driver for ati/mach64 graphic cards."
+VERSION="2012.05.31"
+FREEDRIVER="true"
+PRIORITY="1"
+
+CLASSIDS="0300"
+VENDORIDS="1002"
+DEVICEIDS="4354 4358 4554 4654 4754 4755 4756 4758 4C54 5654 5655 5656"
+
+# Dependencies
+DEPENDS="xf86-video-mach64"
+
+
+XORGFILE="/etc/X11/mhwd.d/mach64.conf"
+
+
+post_install()
+{
+	MHWD_HEADING "${XORGFILE}"
+	MHWD_ADD_DEVICE_SECTION "mach64" "${XORGFILE}"
+	MHWD_ADD_DRI "${XORGFILE}"
+	MHWD_ADD_COMPOSITING "${XORGFILE}"
+	MHWD_ADD_BACKSPACE "${XORGFILE}"
+
+	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+}
+
+
+
+post_remove()
+{
+	if [ -e "${XORGFILE}" ]; then
+		rm "${XORGFILE}"
+	fi
+
+	mhwd-gpu --check
+}
+
