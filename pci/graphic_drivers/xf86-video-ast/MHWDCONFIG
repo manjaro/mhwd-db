@@ -1,0 +1,41 @@
+# mhwd Driver Config
+
+NAME="video-ast"
+INFO="X.org ast video driver. Standard open source driver for ASPEED AST graphic cards."
+VERSION="2012.05.26"
+FREEDRIVER="true"
+PRIORITY="1"
+
+CLASSIDS="0300"
+VENDORIDS="1A03"
+DEVICEIDS="2000 2010 1180"
+
+# Dependencies
+DEPENDS="xf86-video-ast"
+
+
+XORGFILE="/etc/X11/mhwd.d/ast.conf"
+
+
+post_install()
+{
+	MHWD_HEADING "${XORGFILE}"
+	MHWD_ADD_DEVICE_SECTION "ast" "${XORGFILE}"
+	MHWD_ADD_DRI "${XORGFILE}"
+	MHWD_ADD_COMPOSITING "${XORGFILE}"
+	MHWD_ADD_BACKSPACE "${XORGFILE}"
+
+	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+}
+
+
+
+post_remove()
+{
+	if [ -e "${XORGFILE}" ]; then
+		rm "${XORGFILE}"
+	fi
+
+	mhwd-gpu --check
+}
+

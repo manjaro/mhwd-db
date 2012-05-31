@@ -1,0 +1,41 @@
+# mhwd Driver Config
+
+NAME="video-ark"
+INFO="X.org ark video driver. Standard open source driver for ark graphic cards."
+VERSION="2012.05.26"
+FREEDRIVER="true"
+PRIORITY="1"
+
+CLASSIDS="0300"
+VENDORIDS="EDD8"
+DEVICEIDS="A091 A099 A0A1 A0A9"
+
+# Dependencies
+DEPENDS="xf86-video-ark"
+
+
+XORGFILE="/etc/X11/mhwd.d/ark.conf"
+
+
+post_install()
+{
+	MHWD_HEADING "${XORGFILE}"
+	MHWD_ADD_DEVICE_SECTION "ark" "${XORGFILE}"
+	MHWD_ADD_DRI "${XORGFILE}"
+	MHWD_ADD_COMPOSITING "${XORGFILE}"
+	MHWD_ADD_BACKSPACE "${XORGFILE}"
+
+	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+}
+
+
+
+post_remove()
+{
+	if [ -e "${XORGFILE}" ]; then
+		rm "${XORGFILE}"
+	fi
+
+	mhwd-gpu --check
+}
+
