@@ -1,0 +1,41 @@
+# mhwd Driver Config
+
+NAME="video-neomagic"
+INFO="X.org neomagic video driver. Standard open source driver for neomagic graphic cards."
+VERSION="2012.05.31"
+FREEDRIVER="true"
+PRIORITY="1"
+
+CLASSIDS="0300"
+VENDORIDS="10c8"
+DEVICEIDS="*"
+
+# Dependencies
+DEPENDS="xf86-video-neomagic"
+
+
+XORGFILE="/etc/X11/mhwd.d/neomagic.conf"
+
+
+post_install()
+{
+	MHWD_HEADING "${XORGFILE}"
+	MHWD_ADD_DEVICE_SECTION "neomagic" "${XORGFILE}"
+	MHWD_ADD_DRI "${XORGFILE}"
+	MHWD_ADD_COMPOSITING "${XORGFILE}"
+	MHWD_ADD_BACKSPACE "${XORGFILE}"
+
+	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+}
+
+
+
+post_remove()
+{
+	if [ -e "${XORGFILE}" ]; then
+		rm "${XORGFILE}"
+	fi
+
+	mhwd-gpu --check
+}
+
