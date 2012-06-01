@@ -1,0 +1,39 @@
+# mhwd Driver Config
+
+NAME="video-catalyst"
+INFO="Closed source catalyst drivers for linux."
+VERSION="2012.06.01"
+FREEDRIVER="false"
+PRIORITY="3"
+
+CLASSIDS="0300"
+VENDORIDS="1043 1002 1014 1022 1028 1106 8086 103c 104D"
+DEVICEIDS=">/var/lib/mhwd/ids/pci/catalyst.ids"
+
+# Dependencies
+DEPENDS="catalyst-kernel-modules catalyst-utils"
+DEPENDS_64="lib32-catalyst-utils"
+
+
+XORGFILE="/etc/X11/mhwd.d/catalyst.conf"
+
+
+post_install()
+{
+	aticonfig -o "${XORGFILE}" --composite &>/dev/null
+	MHWD_ADD_BACKSPACE "${XORGFILE}"
+
+	mhwd-gpu --setgl catalyst --setxorg "${XORGFILE}"
+}
+
+
+
+post_remove()
+{
+	if [ -e "${XORGFILE}" ]; then
+		rm "${XORGFILE}"
+	fi
+
+	mhwd-gpu --check
+}
+
