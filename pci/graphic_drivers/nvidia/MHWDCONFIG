@@ -2,9 +2,9 @@
 
 NAME="video-nvidia"
 INFO="Closed source NVIDIA drivers for linux."
-VERSION="2012.05.26"
+VERSION="2012.06.01"
 FREEDRIVER="false"
-PRIORITY="2"
+PRIORITY="3"
 
 CLASSIDS="0300"
 VENDORIDS="10de"

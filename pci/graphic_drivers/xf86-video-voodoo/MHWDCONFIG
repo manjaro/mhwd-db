@@ -2,9 +2,9 @@
 
 NAME="video-voodoo"
 INFO="X.org voodoo video driver. Standard open source driver for 3DFX graphic cards."
-VERSION="2012.05.31"
+VERSION="2012.06.01"
 FREEDRIVER="true"
-PRIORITY="1"
+PRIORITY="2"
 
 CLASSIDS="0300"
 VENDORIDS="121a"
