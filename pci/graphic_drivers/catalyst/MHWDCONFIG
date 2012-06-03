@@ -2,7 +2,7 @@
 
 NAME="video-catalyst"
 INFO="Closed source catalyst drivers for linux."
-VERSION="2012.06.01"
+VERSION="2012.06.03"
 FREEDRIVER="false"
 PRIORITY="3"
 
@@ -10,8 +10,11 @@ CLASSIDS="0300"
 VENDORIDS="1043 1002 1014 1022 1028 1106 8086 103c 104D"
 DEVICEIDS=">/var/lib/mhwd/ids/pci/catalyst.ids"
 
+# Conflicts
+CONFLICTS_64="lib32-ati-dri lib32-intel-dri lib32-nouveau-dri"
+
 # Dependencies
-DEPENDS="catalyst-kernel-modules catalyst-utils"
+DEPENDS="catalyst catalyst-utils"
 DEPENDS_64="lib32-catalyst-utils"
 
 
