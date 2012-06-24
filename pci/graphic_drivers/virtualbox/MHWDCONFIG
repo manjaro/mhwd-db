@@ -11,7 +11,7 @@ VENDORIDS="80ee"
 DEVICEIDS="*"
 
 # Dependencies
-DEPENDS="virtualbox-modules virtualbox-archlinux-additions"
+DEPENDS="virtualbox-manjaro-modules virtualbox-archlinux-additions"
 
 
 XORGFILE="/etc/X11/mhwd.d/virtualbox.conf"
