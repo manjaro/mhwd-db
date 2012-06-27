@@ -10,6 +10,9 @@ CLASSIDS="0300"
 VENDORIDS="8086"
 DEVICEIDS="*"
 
+# Conflicts with other mhwd configs
+MHWDCONFLICTS="video-hybrid-intel-nvidia-bumblebee video-hybrid-intel-nouveau-bumblebee"
+
 # Dependencies
 DEPENDS="xf86-video-intel intel-dri"
 DEPENDS_64="lib32-intel-dri"

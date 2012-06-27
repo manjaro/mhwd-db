@@ -10,6 +10,9 @@ CLASSIDS="0300"
 VENDORIDS="10de"
 DEVICEIDS=">/var/lib/mhwd/ids/pci/nvidia.ids"
 
+# Conflicts with other mhwd configs
+MHWDCONFLICTS="video-hybrid-intel-nvidia-bumblebee"
+
 # Dependencies
 DEPENDS="nvidia nvidia-utils"
 DEPENDS_64="lib32-nvidia-utils"
