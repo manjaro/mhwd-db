@@ -2,9 +2,9 @@
 
 NAME="video-catalyst"
 INFO="Closed source catalyst drivers for linux."
-VERSION="2012.06.25"
+VERSION="2012.07.07"
 FREEDRIVER="false"
-PRIORITY="3"
+PRIORITY="4"
 
 CLASSIDS="0300"
 VENDORIDS="1002"
