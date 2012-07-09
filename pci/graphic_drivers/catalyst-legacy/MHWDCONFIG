@@ -2,7 +2,7 @@
 
 NAME="video-catalyst-legacy"
 INFO="Closed source catalyst legacy drivers for linux."
-VERSION="2012.07.06"
+VERSION="2012.07.09"
 FREEDRIVER="false"
 PRIORITY="3"
 
@@ -23,7 +23,7 @@ XORGFILE="/etc/X11/mhwd.d/catalyst.conf"
 
 post_install()
 {
-	aticonfig -o "${XORGFILE}" --composite &>/dev/null
+	aticonfig -o "${XORGFILE}" --initial &>/dev/null
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
 
 	mhwd-gpu --setgl catalyst --setxorg "${XORGFILE}"

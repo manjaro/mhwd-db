@@ -23,7 +23,7 @@ XORGFILE="/etc/X11/mhwd.d/catalyst.conf"
 
 post_install()
 {
-	aticonfig -o "${XORGFILE}" --composite &>/dev/null
+	aticonfig -o "${XORGFILE}" --initial &>/dev/null
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
 
 	mhwd-gpu --setgl catalyst --setxorg "${XORGFILE}"
