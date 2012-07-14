@@ -45,7 +45,9 @@ post_install()
 	echo "" >> "${VBOXSCRIPT}"
 	echo "/usr/bin/VBoxClient-all &" >> "${VBOXSCRIPT}"
 
-	modprobe vboxguest vboxsf vboxvideo
+	modprobe vboxguest
+	modprobe vboxsf
+	modprobe vboxvideo
 
 	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
 }
