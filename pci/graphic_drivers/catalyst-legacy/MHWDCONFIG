@@ -2,16 +2,13 @@
 
 NAME="video-catalyst-legacy"
 INFO="Closed source catalyst legacy drivers for linux."
-VERSION="2012.07.09"
+VERSION="2012.07.17"
 FREEDRIVER="false"
 PRIORITY="3"
 
 CLASSIDS="0300"
 VENDORIDS="1002"
 DEVICEIDS=">/var/lib/mhwd/ids/pci/catalyst-legacy.ids"
-
-# Conflicts
-CONFLICTS_64="lib32-ati-dri lib32-intel-dri lib32-nouveau-dri"
 
 # Dependencies
 DEPENDS="catalyst-legacy catalyst-legacy-utils"
