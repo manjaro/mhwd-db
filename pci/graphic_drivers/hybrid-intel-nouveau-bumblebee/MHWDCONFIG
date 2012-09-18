@@ -2,7 +2,7 @@
 
 NAME="video-hybrid-intel-nouveau-bumblebee"
 INFO="Hybrid bumblebee solution for NVIDIA Optimus Technology - Open source nouveau & intel video driver."
-VERSION="2012.25.06"
+VERSION="2012.09.18"
 FREEDRIVER="true"
 PRIORITY="5"
 
@@ -37,6 +37,9 @@ post_install()
 	MHWD_ADD_DRI "${XORGFILE}"
 	MHWD_ADD_COMPOSITING "${XORGFILE}"
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
+
+	# Enable sna acceleration method
+	sed -i /'Section "Device"'/,/'EndSection'/s/'EndSection'/"\tOption      \"AccelMethod\" \"sna\"\nEndSection"/g "${XORGFILE}"
 
 	MHWD_HEADING "${MODULESFILE}"
 	echo "options bbswitch load_state=0 unload_state=0" >> "${MODULESFILE}"

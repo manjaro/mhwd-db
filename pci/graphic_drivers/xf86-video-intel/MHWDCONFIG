@@ -2,7 +2,7 @@
 
 NAME="video-intel"
 INFO="X.org intel video driver. Standard open source driver for intel graphic cards."
-VERSION="2012.05.26"
+VERSION="2012.09.18"
 FREEDRIVER="true"
 PRIORITY="2"
 
@@ -28,6 +28,9 @@ post_install()
 	MHWD_ADD_DRI "${XORGFILE}"
 	MHWD_ADD_COMPOSITING "${XORGFILE}"
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
+
+	# Enable sna acceleration method
+	sed -i /'Section "Device"'/,/'EndSection'/s/'EndSection'/"\tOption      \"AccelMethod\" \"sna\"\nEndSection"/g "${XORGFILE}"
 
 	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
 }
