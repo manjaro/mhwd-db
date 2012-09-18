@@ -28,6 +28,7 @@ DEPENDS_64="lib32-virtualgl lib32-nvidia-utils lib32-intel-dri"
 
 XORGFILE="/etc/X11/mhwd.d/intel.conf"
 MODULESFILE="/etc/modules-load.d/mhwd-bbswitch.conf"
+MODULESBLACKLIST="/etc/modprobe.d/mhwd-nvidia.conf"
 
 
 post_install()
@@ -40,6 +41,22 @@ post_install()
 
 	MHWD_HEADING "${MODULESFILE}"
 	echo "options bbswitch load_state=0 unload_state=0" >> "${MODULESFILE}"
+
+
+	MHWD_HEADING "${MODULESBLACKLIST}"
+	echo "blacklist nouveau" >> "${MODULESBLACKLIST}"
+	echo "blacklist ttm" >> "${MODULESBLACKLIST}"
+	echo "blacklist drm_kms_helper" >> "${MODULESBLACKLIST}"
+	echo "blacklist drm" >> "${MODULESBLACKLIST}"
+
+	# Unload modules if X is not running
+	if [ ! "$(pgrep X)" ];	then
+		rmmod -f nouveau
+		rmmod -f ttm
+		rmmod -f drm_kms_helper
+		rmmod -f drm
+	fi
+
 
 	modprobe bbswitch
 
@@ -70,6 +87,9 @@ post_remove()
 	fi
 	if [ -e "${MODULESFILE}" ]; then
 		rm "${MODULESFILE}"
+	fi
+	if [ -e "${MODULESBLACKLIST}" ]; then
+		rm "${MODULESBLACKLIST}"
 	fi
 
 	mhwd-gpu --check
