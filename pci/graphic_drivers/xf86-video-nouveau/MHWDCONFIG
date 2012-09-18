@@ -2,7 +2,7 @@
 
 NAME="video-nouveau"
 INFO="X.org nouveau video driver. Standard open source driver for nvidia graphic cards."
-VERSION="2012.06.01"
+VERSION="2012.09.18"
 FREEDRIVER="true"
 PRIORITY="2"
 
@@ -24,7 +24,7 @@ XORGFILE="/etc/X11/mhwd.d/nouveau.conf"
 post_install()
 {
 	MHWD_HEADING "${XORGFILE}"
-	MHWD_ADD_DEVICE_SECTION "nouveau" "${XORGFILE}"
+	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "nouveau" "${XORGFILE}" 10de
 	MHWD_ADD_DRI "${XORGFILE}"
 	MHWD_ADD_COMPOSITING "${XORGFILE}"
 	MHWD_ADD_BACKSPACE "${XORGFILE}"

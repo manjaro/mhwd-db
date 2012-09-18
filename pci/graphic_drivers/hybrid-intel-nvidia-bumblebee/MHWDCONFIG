@@ -27,20 +27,37 @@ DEPENDS_64="lib32-virtualgl lib32-nvidia-utils lib32-intel-dri"
 
 
 XORGFILE="/etc/X11/mhwd.d/intel.conf"
+BXORGFILE="/etc/bumblebee/xorg.conf.nvidia"
 MODULESFILE="/etc/modules-load.d/mhwd-bbswitch.conf"
 MODULESBLACKLIST="/etc/modprobe.d/mhwd-nvidia.conf"
 
 
+
+make_bumblebee_xorg_config()
+{
+	MHWD_HEADING "${BXORGFILE}"
+
+	echo 'Section "ServerLayout"' >> "${BXORGFILE}"
+	echo '    Identifier "Layout0"' >> "${BXORGFILE}"
+	echo '    Option "AutoAddDevices" "false"' >> "${BXORGFILE}"
+	echo 'EndSection' >> "${BXORGFILE}"
+	echo '' >> "${BXORGFILE}"
+
+	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "nvidia" "${BXORGFILE}" 10de "VendorName \"NVIDIA Corporation\"|Option \"NoLogo\" \"true\"|Option \"UseEDID\" \"false\"|Option \"ConnectedMonitor\" \"DFP\""
+}
+
+
 post_install()
 {
+	# Create intel xorg configuration with enabled sna acceleration method
 	MHWD_HEADING "${XORGFILE}"
-	MHWD_ADD_DEVICE_SECTION "intel" "${XORGFILE}"
+	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "intel" "${XORGFILE}" 8086 "Option      \"AccelMethod\" \"sna\""
 	MHWD_ADD_DRI "${XORGFILE}"
 	MHWD_ADD_COMPOSITING "${XORGFILE}"
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
 
-	# Enable sna acceleration method
-	sed -i /'Section "Device"'/,/'EndSection'/s/'EndSection'/"\tOption      \"AccelMethod\" \"sna\"\nEndSection"/g "${XORGFILE}"
+	# Create nvidia bumblebee xorg configuration
+	make_bumblebee_xorg_config
 
 	MHWD_HEADING "${MODULESFILE}"
 	echo "options bbswitch load_state=0 unload_state=0" >> "${MODULESFILE}"

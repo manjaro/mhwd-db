@@ -23,14 +23,12 @@ XORGFILE="/etc/X11/mhwd.d/intel.conf"
 
 post_install()
 {
+	# Create intel xorg configuration with enabled sna acceleration method
 	MHWD_HEADING "${XORGFILE}"
-	MHWD_ADD_DEVICE_SECTION "intel" "${XORGFILE}"
+	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "intel" "${XORGFILE}" 8086 "Option      \"AccelMethod\" \"sna\""
 	MHWD_ADD_DRI "${XORGFILE}"
 	MHWD_ADD_COMPOSITING "${XORGFILE}"
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
-
-	# Enable sna acceleration method
-	sed -i /'Section "Device"'/,/'EndSection'/s/'EndSection'/"\tOption      \"AccelMethod\" \"sna\"\nEndSection"/g "${XORGFILE}"
 
 	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
 }

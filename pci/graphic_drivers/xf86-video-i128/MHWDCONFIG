@@ -2,7 +2,7 @@
 
 NAME="video-i128"
 INFO="X.org i128 video driver. Standard open source driver for Number 9 I128 graphic cards."
-VERSION="2012.05.31"
+VERSION="2012.09.18"
 FREEDRIVER="true"
 PRIORITY="1"
 
@@ -20,7 +20,7 @@ XORGFILE="/etc/X11/mhwd.d/i128.conf"
 post_install()
 {
 	MHWD_HEADING "${XORGFILE}"
-	MHWD_ADD_DEVICE_SECTION "i128" "${XORGFILE}"
+	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "i128" "${XORGFILE}" 105D
 	MHWD_ADD_DRI "${XORGFILE}"
 	MHWD_ADD_COMPOSITING "${XORGFILE}"
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
