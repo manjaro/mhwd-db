@@ -11,7 +11,7 @@ VENDORIDS="80ee"
 DEVICEIDS="*"
 
 # Dependencies
-DEPENDS="virtualbox-guest-modules"
+DEPENDS="virtualbox-guest-modules virtualbox-guest-utils"
 
 
 XORGFILE="/etc/X11/mhwd.d/virtualbox.conf"
