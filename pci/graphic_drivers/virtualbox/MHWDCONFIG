@@ -2,7 +2,7 @@
 
 NAME="video-virtualbox"
 INFO="X.org virtualbox video driver. Standard driver for use in a virtualbox emulation."
-VERSION="2012.10.06"
+VERSION="2012.10.23"
 FREEDRIVER="true"
 PRIORITY="1"
 

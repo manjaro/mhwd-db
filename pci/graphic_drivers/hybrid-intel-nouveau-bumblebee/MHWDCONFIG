@@ -2,7 +2,7 @@
 
 NAME="video-hybrid-intel-nouveau-bumblebee"
 INFO="Hybrid bumblebee solution for NVIDIA Optimus Technology - Open source nouveau & intel video driver."
-VERSION="2012.09.18"
+VERSION="2012.10.23"
 FREEDRIVER="true"
 PRIORITY="5"
 
@@ -28,7 +28,7 @@ DEPENDS_64="lib32-virtualgl lib32-nouveau-dri lib32-intel-dri"
 
 XORGFILE="/etc/X11/mhwd.d/intel.conf"
 BXORGFILE="/etc/bumblebee/xorg.conf.nouveau"
-MODULESFILE="/etc/modules-load.d/mhwd-bbswitch.conf"
+MODULESFILE="/etc/modprobe.d/mhwd-bbswitch.conf"
 
 
 
