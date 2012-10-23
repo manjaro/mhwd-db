@@ -43,7 +43,8 @@ post_install()
 
 	echo "#!/bin/bash" > "${VBOXSCRIPT}"
 	echo "" >> "${VBOXSCRIPT}"
-	echo "/usr/bin/VBoxClient-all 2>/dev/null" >> "${VBOXSCRIPT}"
+	echo "/usr/bin/VBoxClient-all & 2>/dev/null" >> "${VBOXSCRIPT}"
+	chmod a+x "${VBOXSCRIPT}"
 
 	modprobe vboxguest
 	modprobe vboxsf
