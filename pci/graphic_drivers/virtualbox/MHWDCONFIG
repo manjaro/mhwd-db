@@ -2,7 +2,7 @@
 
 NAME="video-virtualbox"
 INFO="X.org virtualbox video driver. Standard driver for use in a virtualbox emulation."
-VERSION="2012.10.23"
+VERSION="2012.10.28"
 FREEDRIVER="true"
 PRIORITY="1"
 
@@ -43,7 +43,7 @@ post_install()
 
 	echo "#!/bin/bash" > "${VBOXSCRIPT}"
 	echo "" >> "${VBOXSCRIPT}"
-	echo "/usr/bin/VBoxClient-all & 2>/dev/null" >> "${VBOXSCRIPT}"
+	echo "/usr/bin/VBoxClient-all & > /dev/null" >> "${VBOXSCRIPT}"
 	chmod a+x "${VBOXSCRIPT}"
 
 	modprobe vboxguest
