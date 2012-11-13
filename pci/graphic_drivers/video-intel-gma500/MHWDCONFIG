@@ -1,0 +1,41 @@
+# mhwd Driver Config
+
+NAME="video-intel-gma500"
+INFO="X.org vesa video driver optimized for intel gma500 graphic cards"
+VERSION="2012.11.13"
+FREEDRIVER="true"
+PRIORITY="3"
+
+CLASSIDS="0300"
+VENDORIDS="8086"
+DEVICEIDS="0be1"
+
+# Dependencies
+DEPENDS="xf86-video-vesa"
+
+
+XORGFILE="/etc/X11/mhwd.d/intel-gma500.conf"
+
+
+post_install()
+{
+	MHWD_HEADING "${XORGFILE}"
+	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "vesa" "${XORGFILE}" "*"
+	MHWD_ADD_DRI "${XORGFILE}"
+	MHWD_ADD_COMPOSITING "${XORGFILE}"
+	MHWD_ADD_BACKSPACE "${XORGFILE}"
+
+	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+}
+
+
+
+post_remove()
+{
+	if [ -e "${XORGFILE}" ]; then
+		rm "${XORGFILE}"
+	fi
+
+	mhwd-gpu --check
+}
+
