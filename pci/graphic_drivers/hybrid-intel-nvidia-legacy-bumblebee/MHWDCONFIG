@@ -1,15 +1,15 @@
 # mhwd Driver Config
 
-NAME="video-hybrid-intel-nvidia-bumblebee"
-INFO="Hybrid bumblebee solution for NVIDIA Optimus Technology - Closed source NVIDIA driver & open source intel driver."
+NAME="video-hybrid-intel-nvidia-legacy-bumblebee"
+INFO="Hybrid bumblebee solution for NVIDIA Optimus Technology - Closed source NVIDIA legacy driver & open source intel driver."
 VERSION="2012.11.18"
 FREEDRIVER="false"
-PRIORITY="7"
+PRIORITY="6"
 
 # NVIDIA cards
 CLASSIDS="0300"
 VENDORIDS="10de"
-DEVICEIDS=">/var/lib/mhwd/ids/pci/nvidia.ids"
+DEVICEIDS=">/var/lib/mhwd/ids/pci/nvidia-legacy.ids"
 
 # Intel cards
 CLASSIDS="0300"
@@ -18,12 +18,12 @@ DEVICEIDS="*"
 
 
 # Conflicts with other mhwd configs
-MHWDCONFLICTS="video-intel video-nvidia video-nvidia-legacy video-hybrid-intel-nouveau-bumblebee video-hybrid-intel-nvidia-legacy-bumblebee"
+MHWDCONFLICTS="video-intel video-nvidia video-nvidia-legacy video-hybrid-intel-nouveau-bumblebee video-hybrid-intel-nvidia-bumblebee"
 
 
 # Dependencies
-DEPENDS="bumblebee virtualgl bbswitch nvidia nvidia-utils xf86-video-intel intel-dri"
-DEPENDS_64="lib32-virtualgl lib32-nvidia-utils lib32-intel-dri"
+DEPENDS="bumblebee virtualgl bbswitch nvidia-legacy nvidia-legacy-utils xf86-video-intel intel-dri"
+DEPENDS_64="lib32-virtualgl lib32-nvidia-legacy-utils lib32-intel-dri"
 
 
 XORGFILE="/etc/X11/mhwd.d/intel.conf"
