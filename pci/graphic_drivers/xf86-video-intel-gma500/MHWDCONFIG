@@ -2,7 +2,7 @@
 
 NAME="video-intel-gma500"
 INFO="X.org vesa video driver optimized for intel gma500 graphic cards"
-VERSION="2012.11.13"
+VERSION="2012.12.18"
 FREEDRIVER="true"
 PRIORITY="3"
 
@@ -11,7 +11,7 @@ VENDORIDS="8086"
 DEVICEIDS="0be1"
 
 # Dependencies
-DEPENDS="xf86-video-vesa"
+DEPENDS="xf86-video-modesetting"
 
 
 XORGFILE="/etc/X11/mhwd.d/intel-gma500.conf"
@@ -20,7 +20,7 @@ XORGFILE="/etc/X11/mhwd.d/intel-gma500.conf"
 post_install()
 {
 	MHWD_HEADING "${XORGFILE}"
-	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "vesa" "${XORGFILE}" "*"
+	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "modesetting" "${XORGFILE}" 8086 "Option      \"SWCursor\" \"ON\""
 	MHWD_ADD_DRI "${XORGFILE}"
 	MHWD_ADD_COMPOSITING "${XORGFILE}"
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
