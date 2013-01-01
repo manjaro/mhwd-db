@@ -2,7 +2,7 @@
 
 NAME="video-nvidia-legacy"
 INFO="Closed source NVIDIA legacy drivers for linux."
-VERSION="2012.11.18"
+VERSION="2013.01.01"
 FREEDRIVER="false"
 PRIORITY="3"
 
@@ -11,15 +11,17 @@ VENDORIDS="10de"
 DEVICEIDS=">/var/lib/mhwd/ids/pci/nvidia-legacy.ids"
 
 # Conflicts
-CONFLICTS="nvidia nvidia-utils"
+CONFLICTS="nvidia-utils"
 CONFLICTS_64="lib32-nvidia-utils"
+CONKMOD="nvidia"
 
 # Conflicts with other mhwd configs
 MHWDCONFLICTS="video-hybrid-intel-nvidia-bumblebee video-hybrid-intel-nvidia-legacy-bumblebee"
 
 # Dependencies
-DEPENDS="nvidia-legacy nvidia-legacy-utils"
+DEPENDS="nvidia-legacy-utils"
 DEPENDS_64="lib32-nvidia-legacy-utils"
+DEPKMOD="nvidia-legacy"
 
 
 XORGFILE="/etc/X11/mhwd.d/nvidia.conf"

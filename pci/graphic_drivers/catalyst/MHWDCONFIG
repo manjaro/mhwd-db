@@ -2,7 +2,7 @@
 
 NAME="video-catalyst"
 INFO="Closed source catalyst drivers for linux."
-VERSION="2012.09.09"
+VERSION="2013.01.01"
 FREEDRIVER="false"
 PRIORITY="4"
 
@@ -11,12 +11,14 @@ VENDORIDS="1002"
 DEVICEIDS=">/var/lib/mhwd/ids/pci/catalyst.ids"
 
 # Conflicts
-CONFLICTS="catalyst-legacy catalyst-legacy-utils"
+CONFLICTS="catalyst-legacy-utils"
 CONFLICTS_64="lib32-catalyst-legacy-utils"
+CONKMOD="catalyst-legacy"
 
 # Dependencies
-DEPENDS="catalyst catalyst-utils"
+DEPENDS="catalyst-utils"
 DEPENDS_64="lib32-catalyst-utils"
+DEPKMOD="catalyst"
 
 
 XORGFILE="/etc/X11/mhwd.d/catalyst.conf"
