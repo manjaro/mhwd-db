@@ -1,14 +1,14 @@
 # mhwd Driver Config
 
 NAME="video-intel-gma500"
-INFO="X.org vesa video driver optimized for intel gma500 graphic cards"
-VERSION="2012.12.20"
+INFO="X.org modesetting video driver optimized for intel gma500 graphic cards"
+VERSION="2013.01.04"
 FREEDRIVER="true"
 PRIORITY="3"
 
 CLASSIDS="0300"
 VENDORIDS="8086"
-DEVICEIDS="0be1 8108"
+DEVICEIDS="8108"
 
 # Dependencies
 DEPENDS="xf86-video-modesetting"
