@@ -2,7 +2,7 @@
 
 NAME="video-hybrid-intel-nvidia-bumblebee"
 INFO="Hybrid bumblebee solution for NVIDIA Optimus Technology - Closed source NVIDIA driver & open source intel driver."
-VERSION="2013.01.01"
+VERSION="2013.01.06"
 FREEDRIVER="false"
 PRIORITY="7"
 
@@ -22,9 +22,9 @@ MHWDCONFLICTS="video-intel video-nvidia video-nvidia-legacy video-hybrid-intel-n
 
 
 # Dependencies
-DEPENDS="bumblebee virtualgl bbswitch nvidia-utils xf86-video-intel intel-dri"
+DEPENDS="bumblebee virtualgl nvidia-utils xf86-video-intel intel-dri"
 DEPENDS_64="lib32-virtualgl lib32-nvidia-utils lib32-intel-dri"
-DEPKMOD="nvidia"
+DEPKMOD="nvidia bbswitch"
 
 
 XORGFILE="/etc/X11/mhwd.d/intel.conf"
