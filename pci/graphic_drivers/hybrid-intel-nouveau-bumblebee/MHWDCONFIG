@@ -2,7 +2,7 @@
 
 NAME="video-hybrid-intel-nouveau-bumblebee"
 INFO="Hybrid bumblebee solution for NVIDIA Optimus Technology - Open source nouveau & intel video driver."
-VERSION="2013.01.06"
+VERSION="2013.01.12"
 FREEDRIVER="true"
 PRIORITY="5"
 
@@ -15,7 +15,7 @@ DEVICEIDS="*"
 CLASSIDS="0300"
 VENDORIDS="8086"
 DEVICEIDS="*"
-
+BLACKLISTEDDEVICEIDS="0be1 8108"
 
 # Conflicts with other mhwd configs
 MHWDCONFLICTS="video-intel video-nouveau video-hybrid-intel-nvidia-bumblebee"
