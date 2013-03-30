@@ -2,7 +2,7 @@
 
 NAME="video-catalyst"
 INFO="Closed source catalyst drivers for linux."
-VERSION="2013.01.01"
+VERSION="2013.03.30"
 FREEDRIVER="false"
 PRIORITY="4"
 
@@ -11,12 +11,15 @@ VENDORIDS="1002"
 DEVICEIDS=">/var/lib/mhwd/ids/pci/catalyst.ids"
 
 # Conflicts
-CONFLICTS="catalyst-legacy-utils"
+CONFLICTS="catalyst-legacy-utils synaptics xf86-input-acecad xf86-input-aiptek xf86-input-elographics xf86-input-evdev xf86-input-joystick xf86-input-keyboard xf86-input-mouse xf86-input-synaptics xf86-input-void xf86-input-wacom xorg-server-common xorg-server-devel xorg-server-xdmx xorg-server-xephyr xorg-server-xnest xorg-server-xvfb xorg-server xf86-video-fbdev xf86-video-intel xf86-video-v4l xf86-video-vesa xf86-video-intel-sna xf86-video-intel-uxa xf86-video-i810 xf86-video-intel-legacy"
 CONFLICTS_64="lib32-catalyst-legacy-utils"
 CONKMOD="catalyst-legacy"
 
+# Conflicts with other mhwd configs
+MHWDCONFLICTS="video-ati video-intel video-vesa"
+
 # Dependencies
-DEPENDS="catalyst-utils"
+DEPENDS="catalyst-input catalyst-video catalyst-server catalyst-utils"
 DEPENDS_64="lib32-catalyst-utils"
 DEPKMOD="catalyst"
 
