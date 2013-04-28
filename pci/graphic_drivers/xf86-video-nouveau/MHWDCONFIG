@@ -29,7 +29,7 @@ post_install()
 	MHWD_ADD_COMPOSITING "${XORGFILE}"
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
 
-	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+	mhwd-xorg --setxorg "${XORGFILE}"
 }
 
 
@@ -40,6 +40,6 @@ post_remove()
 		rm "${XORGFILE}"
 	fi
 
-	mhwd-gpu --check
+	
 }
 

@@ -31,7 +31,7 @@ post_install()
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
 	aticonfig -o "${XORGFILE}" --initial --nobackup &>/dev/null
 
-	mhwd-gpu --setgl catalyst --setxorg "${XORGFILE}"
+	mhwd-xorg --setxorg "${XORGFILE}"
 }
 
 
@@ -41,7 +41,5 @@ post_remove()
 	if [ -e "${XORGFILE}" ]; then
 		rm "${XORGFILE}"
 	fi
-
-	mhwd-gpu --check
 }
 

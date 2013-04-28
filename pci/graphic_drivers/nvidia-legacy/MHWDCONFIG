@@ -46,7 +46,7 @@ post_install()
 	# Fix screen flickering for some nvidia devices
 	MHWD_FUNC_ON_MATCH 0300 10de "0400 0401 0402 0403 0407 0409 0425" fix_screen_flickering
 
-	mhwd-gpu --setgl nvidia --setxorg "${XORGFILE}"
+	mhwd-xorg --setxorg "${XORGFILE}"
 }
 
 
@@ -56,7 +56,5 @@ post_remove()
 	if [ -e "${XORGFILE}" ]; then
 		rm "${XORGFILE}"
 	fi
-
-	mhwd-gpu --check
 }
 

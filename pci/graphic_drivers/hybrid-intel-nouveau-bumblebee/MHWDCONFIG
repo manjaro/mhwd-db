@@ -72,7 +72,7 @@ post_install()
 
 	set_bumblebee_driver "nouveau"
 
-	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+	mhwd-xorg --setxorg "${XORGFILE}"
 
 	systemctl enable bumblebeed.service
 	systemctl start bumblebeed.service
@@ -98,8 +98,6 @@ post_remove()
 	if [ -e "${MODULESFILE}" ]; then
 		rm "${MODULESFILE}"
 	fi
-
-	mhwd-gpu --check
 }
 
 
