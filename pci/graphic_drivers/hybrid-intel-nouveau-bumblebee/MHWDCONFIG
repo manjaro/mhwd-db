@@ -22,8 +22,8 @@ MHWDCONFLICTS="video-intel video-nouveau video-hybrid-intel-nvidia-bumblebee"
 
 
 # Dependencies
-DEPENDS="bumblebee virtualgl xf86-video-nouveau nouveau-dri xf86-video-intel intel-dri"
-DEPENDS_64="lib32-virtualgl lib32-nouveau-dri lib32-intel-dri"
+DEPENDS="bumblebee primus xf86-video-nouveau nouveau-dri xf86-video-intel intel-dri"
+DEPENDS_64="lib32-primus lib32-nouveau-dri lib32-intel-dri"
 DEPKMOD="bbswitch"
 
 
