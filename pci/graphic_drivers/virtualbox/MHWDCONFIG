@@ -51,7 +51,7 @@ post_install()
 	modprobe vboxsf
 	modprobe vboxvideo
 
-	mhwd-xorg --setxorg "${XORGFILE}"
+	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
 }
 
 
@@ -67,5 +67,7 @@ post_remove()
 	if [ -e "${VBOXSCRIPT}" ]; then
 		rm "${VBOXSCRIPT}"
 	fi
+
+	mhwd-gpu --check
 }
 

@@ -2,7 +2,7 @@
 
 NAME="video-hybrid-intel-nvidia-bumblebee"
 INFO="Hybrid bumblebee solution for NVIDIA Optimus Technology - Closed source NVIDIA driver & open source intel driver."
-VERSION="2013.04.18"
+VERSION="2013.04.29"
 FREEDRIVER="false"
 PRIORITY="6"
 
@@ -83,7 +83,7 @@ post_install()
 
 	set_bumblebee_driver "nvidia"
 
-	mhwd-xorg --setxorg "${XORGFILE}"
+	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
 
 	systemctl enable bumblebeed.service
 	systemctl start bumblebeed.service
@@ -112,6 +112,8 @@ post_remove()
 	if [ -e "${MODULESBLACKLIST}" ]; then
 		rm "${MODULESBLACKLIST}"
 	fi
+
+	mhwd-gpu --check
 }
 
 
