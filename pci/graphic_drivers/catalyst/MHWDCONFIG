@@ -15,6 +15,7 @@ CONFLICTS="catalyst-legacy-utils"
 CONFLICTS_64="lib32-catalyst-legacy-utils"
 CONKMOD="catalyst-legacy"
 CONFLDD="libcl"
+CONFLDD_64="lib32-libcl"
 
 # Dependencies
 DEPENDS="catalyst-utils"

@@ -2,7 +2,7 @@
 
 NAME="video-catalyst-legacy"
 INFO="Closed source catalyst legacy drivers for linux."
-VERSION="2013.05.05"
+VERSION="2013.08.18"
 FREEDRIVER="false"
 PRIORITY="3"
 
@@ -15,6 +15,7 @@ CONFLICTS="catalyst-utils"
 CONFLICTS_64="lib32-catalyst-utils"
 CONKMOD="catalyst"
 CONFLDD="libcl xf86-input-acecad xf86-input-aiptek xf86-input-elographics xf86-input-evdev xf86-input-joystick xf86-input-keyboard xf86-input-mouse xf86-input-synaptics xf86-input-void xf86-input-wacom xorg-server-common xorg-server-devel xorg-server-xdmx xorg-server-xephyr xorg-server-xnest xorg-server-xvfb xorg-server xf86-video-fbdev xf86-video-intel xf86-video-v4l xf86-video-vesa xf86-video-intel-sna xf86-video-intel-uxa xf86-video-i810 xf86-video-intel-legacy"
+CONFLDD_64="lib32-libcl"
 
 # Dependencies
 DEPENDS="catalyst-input catalyst-video catalyst-server catalyst-legacy-utils"
