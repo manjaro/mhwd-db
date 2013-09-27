@@ -1,0 +1,41 @@
+# mhwd Driver Config
+
+NAME="video-vmware"
+INFO="X.org vmware video driver."
+VERSION="2013.09.26"
+FREEDRIVER="true"
+PRIORITY="1"
+
+CLASSIDS="0300"
+VENDORIDS="15AD"
+DEVICEIDS="*"
+
+# Dependencies
+DEPENDS="xf86-video-vmware svga-dri xf86-input-vmmouse open-vm-tools"
+DEPKMOD="open-vm-tools-modules"
+
+XORGFILE="/etc/X11/mhwd.d/vmware.conf"
+
+
+post_install()
+{
+	MHWD_HEADING "${XORGFILE}"
+	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "vmware" "${XORGFILE}" 15AD
+	MHWD_ADD_DRI "${XORGFILE}"
+	MHWD_ADD_COMPOSITING "${XORGFILE}"
+	MHWD_ADD_BACKSPACE "${XORGFILE}"
+
+	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+}
+
+
+
+post_remove()
+{
+	if [ -e "${XORGFILE}" ]; then
+		rm "${XORGFILE}"
+	fi
+
+	mhwd-gpu --check
+}
+
