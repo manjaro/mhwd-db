@@ -1,5 +1,11 @@
 # mhwd Driver Config
 
+# modinfo wl.ko.gz
+# alias: pci:v000014E4d0000431[1235]sv*sd*bc*sc*i*
+# alias: pci:v000014E4d0000432[89ABCD]sv*sd*bc*sc*i*
+# alias: pci:v000014E4d0000435[37]sv*sd*bc*sc*i*
+# alias: pci:v000014E4d00004727sv*sd*bc*sc*i*
+
 NAME="network-broadcom-wl"
 INFO="Broadcom 802.11 Linux STA wireless driver BCM43142"
 VERSION="2013.12.07"
