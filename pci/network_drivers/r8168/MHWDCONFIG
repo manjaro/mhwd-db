@@ -14,6 +14,9 @@ CLASSIDS="0200"
 VENDORIDS="1186 10EC"
 DEVICEIDS="4300 8168"
 
+# Dependencies
+DEPKMOD="r8168"
+
 post_install()
 {
 	echo "blacklist r8169" > /etc/modprobe.d/r8169_blacklist.conf
