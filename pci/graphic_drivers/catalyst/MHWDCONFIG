@@ -2,18 +2,18 @@
 
 NAME="video-catalyst"
 INFO="Closed source catalyst drivers for linux."
-VERSION="2013.08.18"
+VERSION="2014.01.02"
 FREEDRIVER="false"
-PRIORITY="4"
+PRIORITY="5"
 
 CLASSIDS="0300"
 VENDORIDS="1002"
 DEVICEIDS=">/var/lib/mhwd/ids/pci/catalyst.ids"
 
 # Conflicts
-CONFLICTS="catalyst-legacy-utils"
-CONFLICTS_64="lib32-catalyst-legacy-utils"
-CONKMOD="catalyst-legacy"
+CONFLICTS="catalyst-13.4-utils catalyst-legacy-utils"
+CONFLICTS_64="lib32-catalyst-13.4-utils lib32-catalyst-legacy-utils"
+CONKMOD="catalyst-13.4 catalyst-legacy"
 CONFLDD="libcl"
 CONFLDD_64="lib32-libcl"
 
