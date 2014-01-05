@@ -2,11 +2,11 @@
 
 NAME="video-nvidia"
 INFO="Closed source NVIDIA drivers for linux."
-VERSION="2013.01.01"
+VERSION="2014.01.05"
 FREEDRIVER="false"
 PRIORITY="4"
 
-CLASSIDS="0300"
+CLASSIDS="0300 0302"
 VENDORIDS="10de"
 DEVICEIDS=">/var/lib/mhwd/ids/pci/nvidia.ids"
 

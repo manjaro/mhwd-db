@@ -2,11 +2,11 @@
 
 NAME="video-nvidia-legacy"
 INFO="Closed source NVIDIA legacy drivers for linux."
-VERSION="2013.05.01"
+VERSION="2014.01.05"
 FREEDRIVER="false"
 PRIORITY="3"
 
-CLASSIDS="0300"
+CLASSIDS="0300 0302"
 VENDORIDS="10de"
 DEVICEIDS=">/var/lib/mhwd/ids/pci/nvidia-legacy.ids"
 
