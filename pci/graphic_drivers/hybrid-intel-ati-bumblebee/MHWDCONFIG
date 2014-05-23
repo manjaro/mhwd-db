@@ -1,0 +1,111 @@
+# mhwd Driver Config
+
+NAME="video-hybrid-intel-ati-bumblebee"
+INFO="Hybrid bumblebee solution for AMD - Open source ati & intel video driver."
+VERSION="2014.01.20"
+FREEDRIVER="true"
+PRIORITY="6"
+
+# AMD cards
+CLASSIDS="0300"
+VENDORIDS="1002"
+DEVICEIDS="*"
+
+# Intel cards
+CLASSIDS="0300"
+VENDORIDS="8086"
+DEVICEIDS="*"
+BLACKLISTEDDEVICEIDS="0be1 8108"
+
+# Conflicts with other mhwd configs
+MHWDCONFLICTS="video-intel video-ati"
+
+
+# Dependencies
+DEPENDS="bumblebee primus xf86-video-ati ati-dri xf86-video-intel intel-dri"
+DEPENDS_64="lib32-primus lib32-ati-dri lib32-intel-dri"
+DEPKMOD="bbswitch"
+
+
+XORGFILE="/etc/X11/mhwd.d/intel.conf"
+BXORGFILE="/etc/bumblebee/xorg.conf.ati"
+MODULESFILE="/etc/modprobe.d/mhwd-bbswitch.conf"
+
+
+
+make_bumblebee_xorg_config()
+{
+	MHWD_HEADING "${BXORGFILE}"
+
+	echo 'Section "ServerLayout"' >> "${BXORGFILE}"
+	echo '    Identifier     "Layout0"' >> "${BXORGFILE}"
+	echo '    Screen         "Screen0"' >> "${BXORGFILE}"
+	echo '    Option         "AutoAddDevices" "false"' >> "${BXORGFILE}"
+	echo 'EndSection' >> "${BXORGFILE}"
+	echo '' >> "${BXORGFILE}"
+
+	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "radeon" "${BXORGFILE}" 10de
+
+	echo 'Section "Screen"' >> "${BXORGFILE}"
+	echo '    Identifier     "Screen0"' >> "${BXORGFILE}"
+	echo '    Device         "Device0"' >> "${BXORGFILE}"
+	echo 'EndSection' >> "${BXORGFILE}"
+}
+
+
+post_install()
+{
+	# Create intel xorg configuration with enabled sna acceleration method
+	MHWD_HEADING "${XORGFILE}"
+	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "intel" "${XORGFILE}" 8086 "Option      \"AccelMethod\" \"sna\""
+	MHWD_ADD_DRI "${XORGFILE}"
+	MHWD_ADD_COMPOSITING "${XORGFILE}"
+	MHWD_ADD_BACKSPACE "${XORGFILE}"
+
+	# Create ati bumblebee xorg configuration
+	make_bumblebee_xorg_config
+
+	MHWD_HEADING "${MODULESFILE}"
+	echo "options bbswitch load_state=0 unload_state=0" >> "${MODULESFILE}"
+
+	modprobe bbswitch
+
+	set_bumblebee_driver "radeon"
+
+	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+
+	systemctl enable bumblebeed.service
+	systemctl start bumblebeed.service
+}
+
+
+
+pre_remove()
+{
+	modprobe -r bbswitch
+
+	systemctl disable bumblebeed.service
+	systemctl stop bumblebeed.service
+}
+
+
+
+post_remove()
+{
+	if [ -e "${XORGFILE}" ]; then
+		rm "${XORGFILE}"
+	fi
+	if [ -e "${MODULESFILE}" ]; then
+		rm "${MODULESFILE}"
+	fi
+
+	mhwd-gpu --check
+}
+
+
+
+set_bumblebee_driver()
+{
+	sed -i "/(#)/!s/^[ ]*Driver[ ]*=.*/Driver=$1/g" /etc/bumblebee/bumblebee.conf
+}
+
