@@ -1,27 +1,27 @@
 # mhwd Driver Config
 
-NAME="video-nvidia"
-INFO="Closed source NVIDIA drivers for linux."
+NAME="video-nvidia-304xx"
+INFO="Closed source NVIDIA legacy drivers for linux."
 VERSION="2014.09.24"
 FREEDRIVER="false"
-PRIORITY="5"
+PRIORITY="3"
 
 CLASSIDS="0300 0302"
 VENDORIDS="10de"
-DEVICEIDS=">/var/lib/mhwd/ids/pci/nvidia.ids"
+DEVICEIDS=">/var/lib/mhwd/ids/pci/nvidia-304xx.ids"
 
 # Conflicts
-CONFLICTS="nvidia-304xx-utils nvidia-340xx-utils"
-CONFLICTS_64="lib32-nvidia-304xx-utils lib32-nvidia-340xx-utils"
-CONKMOD="nvidia-304xx nvidia-340xx"
+CONFLICTS="nvidia-utils nvidia-340xx-utils"
+CONFLICTS_64="lib32-nvidia-utils lib32-nvidia-340xx-utils"
+CONKMOD="nvidia nvidia-340xx"
 
 # Conflicts with other mhwd configs
 MHWDCONFLICTS="video-hybrid-intel-nvidia-bumblebee video-hybrid-intel-nvidia-legacy-bumblebee"
 
 # Dependencies
-DEPENDS="nvidia-utils"
-DEPENDS_64="lib32-nvidia-utils"
-DEPKMOD="nvidia"
+DEPENDS="nvidia-304xx-utils"
+DEPENDS_64="lib32-nvidia-304xx-utils"
+DEPKMOD="nvidia-304xx"
 
 
 XORGFILE="/etc/X11/mhwd.d/nvidia.conf"
