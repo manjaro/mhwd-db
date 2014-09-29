@@ -16,7 +16,7 @@ CONFLICTS_64="lib32-nvidia-utils lib32-nvidia-304xx-utils"
 CONKMOD="nvidia nvidia-304xx"
 
 # Conflicts with other mhwd configs
-MHWDCONFLICTS="video-hybrid-intel-nvidia-bumblebee video-nvidia video-nvidia-304xx video-nvidia-340xx video-hybrid-intel-nvidia-340xx-bumblebee"
+MHWDCONFLICTS="video-hybrid-intel-nvidia-bumblebee video-nvidia video-nvidia-304xx video-hybrid-intel-nvidia-340xx-bumblebee"
 
 # Dependencies
 DEPENDS="nvidia-340xx-utils"
