@@ -4,7 +4,7 @@ NAME="video-hybrid-intel-nvidia-340xx-bumblebee"
 INFO="Hybrid bumblebee solution for NVIDIA Optimus Technology - Closed source NVIDIA legacy driver & open source intel driver."
 VERSION="2014.09.29"
 FREEDRIVER="false"
-PRIORITY="8"
+PRIORITY="7"
 
 # NVIDIA cards
 CLASSIDS="0300 0302"
@@ -18,7 +18,7 @@ DEVICEIDS="*"
 BLACKLISTEDDEVICEIDS="0be1 8108"
 
 # Conflicts with other mhwd configs
-MHWDCONFLICTS="video-intel video-nvidia video-nvidia-304xx video-nvidia-340xx video-hybrid-intel-nvidia-bumblebee video-hybrid-intel-nouveau-bumblebee"
+MHWDCONFLICTS="video-intel video-nvidia video-nvidia-304xx video-nvidia-340xx video-nvidia-340xx-bumblebee video-hybrid-intel-nvidia-bumblebee video-hybrid-intel-nouveau-bumblebee"
 
 
 # Dependencies
