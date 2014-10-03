@@ -2,7 +2,7 @@
 
 NAME="video-hybrid-intel-ati-bumblebee"
 INFO="Hybrid bumblebee solution for AMD - Open source ati & intel video driver."
-VERSION="2014.01.20"
+VERSION="2014.10.03"
 FREEDRIVER="true"
 PRIORITY="6"
 
@@ -22,8 +22,8 @@ MHWDCONFLICTS="video-intel video-ati"
 
 
 # Dependencies
-DEPENDS="bumblebee primus xf86-video-ati ati-dri xf86-video-intel intel-dri"
-DEPENDS_64="lib32-primus lib32-ati-dri lib32-intel-dri"
+DEPENDS="bumblebee primus xf86-video-ati xf86-video-intel mesa-dri"
+DEPENDS_64="lib32-primus lib32-mesa-dri"
 DEPKMOD="bbswitch"
 
 

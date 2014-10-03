@@ -2,7 +2,7 @@
 
 NAME="video-hybrid-intel-nvidia-340xx-bumblebee"
 INFO="Hybrid bumblebee solution for NVIDIA Optimus Technology - Closed source NVIDIA legacy driver & open source intel driver."
-VERSION="2014.09.29"
+VERSION="2014.10.03"
 FREEDRIVER="false"
 PRIORITY="7"
 
@@ -22,8 +22,8 @@ MHWDCONFLICTS="video-intel video-nvidia video-nvidia-304xx video-nvidia-340xx vi
 
 
 # Dependencies
-DEPENDS="bumblebee primus nvidia-340xx-utils xf86-video-intel intel-dri"
-DEPENDS_64="lib32-primus lib32-nvidia-340xx-utils lib32-intel-dri"
+DEPENDS="bumblebee primus nvidia-340xx-utils xf86-video-intel mesa-dri"
+DEPENDS_64="lib32-primus lib32-nvidia-340xx-utils lib32-mesa-dri"
 DEPKMOD="nvidia-340xx bbswitch"
 
 

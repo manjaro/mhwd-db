@@ -2,7 +2,7 @@
 
 NAME="video-intel"
 INFO="X.org intel video driver. Standard open source driver for intel graphic cards."
-VERSION="2013.01.12"
+VERSION="2014.10.03"
 FREEDRIVER="true"
 PRIORITY="2"
 
@@ -15,8 +15,8 @@ BLACKLISTEDDEVICEIDS="0be1 8108"
 MHWDCONFLICTS="video-hybrid-intel-nvidia-bumblebee video-hybrid-intel-nouveau-bumblebee"
 
 # Dependencies
-DEPENDS="xf86-video-intel intel-dri"
-DEPENDS_64="lib32-intel-dri"
+DEPENDS="xf86-video-intel mesa-dri"
+DEPENDS_64="lib32-mesa-dri"
 
 
 XORGFILE="/etc/X11/mhwd.d/intel.conf"

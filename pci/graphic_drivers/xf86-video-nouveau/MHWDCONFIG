@@ -2,7 +2,7 @@
 
 NAME="video-nouveau"
 INFO="X.org nouveau video driver. Standard open source driver for nvidia graphic cards."
-VERSION="2012.09.18"
+VERSION="2014.10.03"
 FREEDRIVER="true"
 PRIORITY="2"
 
@@ -14,8 +14,8 @@ DEVICEIDS="*"
 MHWDCONFLICTS="video-hybrid-intel-nouveau-bumblebee"
 
 # Dependencies
-DEPENDS="xf86-video-nouveau nouveau-dri"
-DEPENDS_64="lib32-nouveau-dri"
+DEPENDS="xf86-video-nouveau mesa-dri"
+DEPENDS_64="lib32-mesa-dri"
 
 
 XORGFILE="/etc/X11/mhwd.d/nouveau.conf"

@@ -2,7 +2,7 @@
 
 NAME="video-vmware"
 INFO="X.org vmware video driver."
-VERSION="2013.09.26"
+VERSION="2014.10.03"
 FREEDRIVER="true"
 PRIORITY="1"
 
@@ -11,7 +11,7 @@ VENDORIDS="15AD"
 DEVICEIDS="*"
 
 # Dependencies
-DEPENDS="xf86-video-vmware svga-dri xf86-input-vmmouse open-vm-tools"
+DEPENDS="xf86-video-vmware mesa-dri xf86-input-vmmouse open-vm-tools"
 DEPKMOD="open-vm-tools-modules"
 
 XORGFILE="/etc/X11/mhwd.d/vmware.conf"

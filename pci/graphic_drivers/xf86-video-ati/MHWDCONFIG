@@ -2,7 +2,7 @@
 
 NAME="video-ati"
 INFO="X.org ati video driver. Standard open source driver for AMD graphic cards."
-VERSION="2012.09.18"
+VERSION="2014.10.03"
 FREEDRIVER="true"
 PRIORITY="2"
 
@@ -11,8 +11,8 @@ VENDORIDS="1002"
 DEVICEIDS="*"
 
 # Dependencies
-DEPENDS="xf86-video-ati ati-dri"
-DEPENDS_64="lib32-ati-dri"
+DEPENDS="xf86-video-ati mesa-dri"
+DEPENDS_64="lib32-mesa-dri"
 
 
 XORGFILE="/etc/X11/mhwd.d/ati.conf"
