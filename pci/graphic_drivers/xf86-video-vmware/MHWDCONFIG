@@ -12,7 +12,6 @@ DEVICEIDS="*"
 
 # Dependencies
 DEPENDS="xf86-video-vmware mesa-dri xf86-input-vmmouse open-vm-tools"
-DEPKMOD="open-vm-tools-modules"
 
 XORGFILE="/etc/X11/mhwd.d/vmware.conf"
 
