@@ -14,8 +14,8 @@ DEVICEIDS="*"
 MHWDCONFLICTS="video-hybrid-intel-nouveau-bumblebee"
 
 # Dependencies
-DEPENDS="xf86-video-nouveau mesa-dri"
-DEPENDS_64="lib32-mesa-dri"
+DEPENDS="xf86-video-nouveau mesa"
+DEPENDS_64="lib32-mesa"
 
 
 XORGFILE="/etc/X11/mhwd.d/nouveau.conf"

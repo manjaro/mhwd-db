@@ -11,8 +11,8 @@ VENDORIDS="1002"
 DEVICEIDS="*"
 
 # Dependencies
-DEPENDS="xf86-video-ati mesa-dri"
-DEPENDS_64="lib32-mesa-dri"
+DEPENDS="xf86-video-ati mesa"
+DEPENDS_64="lib32-mesa"
 
 
 XORGFILE="/etc/X11/mhwd.d/ati.conf"

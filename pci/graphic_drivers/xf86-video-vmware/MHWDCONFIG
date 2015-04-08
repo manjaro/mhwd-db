@@ -11,7 +11,8 @@ VENDORIDS="15AD"
 DEVICEIDS="*"
 
 # Dependencies
-DEPENDS="xf86-video-vmware mesa-dri xf86-input-vmmouse open-vm-tools"
+DEPENDS="xf86-video-vmware mesa xf86-input-vmmouse open-vm-tools"
+DEPENDS_64="lib32-mesa"
 
 XORGFILE="/etc/X11/mhwd.d/vmware.conf"
 
