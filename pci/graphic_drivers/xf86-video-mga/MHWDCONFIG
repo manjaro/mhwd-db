@@ -2,7 +2,7 @@
 
 NAME="video-mga"
 INFO="X.org modesetting video driver. Standard open source driver for matrox graphic cards."
-VERSION="2012.05.31"
+VERSION="2015.04.10"
 FREEDRIVER="true"
 PRIORITY="1"
 

@@ -2,7 +2,7 @@
 
 NAME="video-ast"
 INFO="X.org ast video driver. Standard open source driver for ASPEED AST graphic cards."
-VERSION="2012.05.26"
+VERSION="2015.04.10"
 FREEDRIVER="true"
 PRIORITY="1"
 

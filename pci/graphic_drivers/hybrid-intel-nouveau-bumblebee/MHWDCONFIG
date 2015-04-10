@@ -2,7 +2,7 @@
 
 NAME="video-hybrid-intel-nouveau-bumblebee"
 INFO="Hybrid bumblebee solution for NVIDIA Optimus Technology - Open source nouveau & intel video driver."
-VERSION="2014.10.03"
+VERSION="2015.04.10"
 FREEDRIVER="true"
 PRIORITY="6"
 

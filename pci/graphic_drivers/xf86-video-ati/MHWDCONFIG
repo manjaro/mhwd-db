@@ -2,7 +2,7 @@
 
 NAME="video-ati"
 INFO="X.org ati video driver. Standard open source driver for AMD graphic cards."
-VERSION="2014.10.03"
+VERSION="2015.04.10"
 FREEDRIVER="true"
 PRIORITY="2"
 

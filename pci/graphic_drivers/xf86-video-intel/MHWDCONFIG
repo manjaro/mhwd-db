@@ -2,7 +2,7 @@
 
 NAME="video-intel"
 INFO="X.org intel video driver. Standard open source driver for intel graphic cards."
-VERSION="2014.10.03"
+VERSION="2015.04.10"
 FREEDRIVER="true"
 PRIORITY="2"
 

@@ -2,7 +2,7 @@
 
 NAME="video-intel-gma500"
 INFO="X.org modesetting video driver optimized for intel gma500 graphic cards"
-VERSION="2013.01.04"
+VERSION="2015.04.10"
 FREEDRIVER="true"
 PRIORITY="3"
 

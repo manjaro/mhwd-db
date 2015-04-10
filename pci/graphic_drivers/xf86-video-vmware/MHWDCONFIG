@@ -2,7 +2,7 @@
 
 NAME="video-vmware"
 INFO="X.org vmware video driver."
-VERSION="2014.11.11"
+VERSION="2015.04.10"
 FREEDRIVER="true"
 PRIORITY="1"
 
