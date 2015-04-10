@@ -11,7 +11,7 @@ VENDORIDS="8086"
 DEVICEIDS="8108"
 
 # Dependencies
-DEPENDS="xf86-video-modesetting"
+DEPENDS=""
 
 
 XORGFILE="/etc/X11/mhwd.d/intel-gma500.conf"

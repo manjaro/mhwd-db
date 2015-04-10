@@ -15,8 +15,8 @@ BLACKLISTEDDEVICEIDS="0be1 8108"
 MHWDCONFLICTS="video-hybrid-intel-nvidia-bumblebee video-hybrid-intel-nouveau-bumblebee"
 
 # Dependencies
-DEPENDS="xf86-video-intel mesa"
-DEPENDS_64="lib32-mesa"
+DEPENDS="xf86-video-intel"
+DEPENDS_64=""
 
 
 XORGFILE="/etc/X11/mhwd.d/intel.conf"

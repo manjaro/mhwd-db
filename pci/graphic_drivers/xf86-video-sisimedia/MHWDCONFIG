@@ -1,7 +1,7 @@
 # mhwd Driver Config
 
 NAME="video-sisimedia"
-INFO="X.org sisimedia video driver. Standard open source driver for SiS 671 graphic cards."
+INFO="X.org modesetting video driver. Standard open source driver for SiS 671 graphic cards."
 VERSION="2012.05.31"
 FREEDRIVER="true"
 PRIORITY="1"
@@ -11,7 +11,7 @@ VENDORIDS="1039 18ca"
 DEVICEIDS="0310 0315 0325 5315 6325 0330 6330 0340 6350 6351 0020 0040"
 
 # Dependencies
-DEPENDS="xf86-video-sisimedia"
+DEPENDS=""
 
 
 XORGFILE="/etc/X11/mhwd.d/sisimedia.conf"

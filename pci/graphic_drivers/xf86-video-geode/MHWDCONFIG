@@ -1,7 +1,7 @@
 # mhwd Driver Config
 
 NAME="video-geode"
-INFO="X.org geode video driver. Standard open source driver for AMD/Geode LX & NX graphic cards."
+INFO="X.org modesetting video driver. Standard open source driver for AMD/Geode LX & NX graphic cards."
 VERSION="2012.05.31"
 FREEDRIVER="true"
 PRIORITY="1"
@@ -11,7 +11,7 @@ VENDORIDS="100b 1022"
 DEVICEIDS="*"
 
 # Dependencies
-DEPENDS="xf86-video-geode"
+DEPENDS=""
 
 
 XORGFILE="/etc/X11/mhwd.d/geode.conf"

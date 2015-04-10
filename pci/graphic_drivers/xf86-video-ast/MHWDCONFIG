@@ -11,7 +11,7 @@ VENDORIDS="1A03"
 DEVICEIDS="2000 2010 1180"
 
 # Dependencies
-DEPENDS="xf86-video-ast"
+DEPENDS=""
 
 
 XORGFILE="/etc/X11/mhwd.d/ast.conf"
