@@ -22,8 +22,8 @@ MHWDCONFLICTS="video-intel video-ati"
 
 
 # Dependencies
-DEPENDS="bumblebee primus xf86-video-ati xf86-video-intel mesa"
-DEPENDS_64="lib32-primus lib32-mesa"
+DEPENDS="bumblebee primus xf86-video-ati xf86-video-intel"
+DEPENDS_64="lib32-primus"
 DEPKMOD="bbswitch"
 
 
