@@ -22,8 +22,8 @@ MHWDCONFLICTS="video-intel video-nvidia video-nvidia-304xx video-nvidia-340xx vi
 
 
 # Dependencies
-DEPENDS="bumblebee primus nvidia-utils xf86-video-intel"
-DEPENDS_64="lib32-primus lib32-nvidia-utils"
+DEPENDS="bumblebee primus nvidia-utils xf86-video-intel mesa"
+DEPENDS_64="lib32-primus lib32-nvidia-utils lib32-mesa"
 DEPKMOD="nvidia bbswitch"
 
 
