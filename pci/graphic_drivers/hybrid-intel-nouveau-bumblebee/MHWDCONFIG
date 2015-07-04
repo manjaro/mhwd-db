@@ -74,12 +74,12 @@ post_install()
 
 	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
 
-		if [[ -d /run/openrc ]];then
-		rc-update del bumblebee default
-		rc-service bumblebee stop
+	if [[ -d /run/openrc ]];then
+		rc-update add bumblebee default
+		rc-service bumblebee start
 	else
-		systemctl disable bumblebeed.service
-		systemctl stop bumblebeed.service
+		systemctl enable bumblebeed.service
+		systemctl start bumblebeed.service
 	fi
 }
 
