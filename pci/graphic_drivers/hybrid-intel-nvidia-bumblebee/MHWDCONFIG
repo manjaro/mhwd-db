@@ -22,7 +22,11 @@ MHWDCONFLICTS="video-intel video-nvidia video-nvidia-304xx video-nvidia-340xx vi
 
 
 # Dependencies
-DEPENDS="bumblebee primus nvidia-utils xf86-video-intel"
+if [[ -d /run/openrc ]];then
+	DEPENDS="bumblebee-openrc primus nvidia-utils xf86-video-intel"
+else
+	DEPENDS="bumblebee primus nvidia-utils xf86-video-intel"
+fi
 DEPENDS_64="lib32-primus lib32-nvidia-utils"
 DEPKMOD="nvidia bbswitch"
 
@@ -99,7 +103,7 @@ post_install()
 pre_remove()
 {
 	modprobe -r bbswitch
-	
+
 	if [[ -d /run/openrc ]];then
 		rc-update del bumblebee default
 		rc-service bumblebee stop
