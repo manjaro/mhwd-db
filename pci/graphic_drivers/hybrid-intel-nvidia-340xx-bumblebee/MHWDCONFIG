@@ -85,8 +85,13 @@ post_install()
 
 	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
 
-	systemctl enable bumblebeed.service
-	systemctl start bumblebeed.service
+	if [[ -d /run/openrc ]];then
+		rc-update add bumblebee default
+		rc-service bumblebee start
+	else
+		systemctl enable bumblebeed.service
+		systemctl start bumblebeed.service
+	fi
 }
 
 
@@ -95,8 +100,13 @@ pre_remove()
 {
 	modprobe -r bbswitch
 
-	systemctl disable bumblebeed.service
-	systemctl stop bumblebeed.service
+	if [[ -d /run/openrc ]];then
+		rc-update del bumblebee default
+		rc-service bumblebee stop
+	else
+		systemctl disable bumblebeed.service
+		systemctl stop bumblebeed.service
+	fi
 }
 
 
