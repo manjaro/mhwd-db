@@ -22,7 +22,11 @@ MHWDCONFLICTS="video-intel video-nvidia video-nvidia-304xx video-nvidia-340xx vi
 
 
 # Dependencies
-DEPENDS="bumblebee primus nvidia-340xx-utils xf86-video-intel"
+if [[ -d /run/openrc ]];then
+	DEPENDS="bumblebee-openrc primus nvidia-340xx-utils xf86-video-intel"
+else
+	DEPENDS="bumblebee primus nvidia-340xx-utils xf86-video-intel"
+fi
 DEPENDS_64="lib32-primus lib32-nvidia-340xx-utils"
 DEPKMOD="nvidia-340xx bbswitch"
 
@@ -85,8 +89,13 @@ post_install()
 
 	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
 
-	systemctl enable bumblebeed.service
-	systemctl start bumblebeed.service
+	if [[ -d /run/openrc ]];then
+		rc-update add bumblebee default
+		rc-service bumblebee start
+	else
+		systemctl enable bumblebeed.service
+		systemctl start bumblebeed.service
+	fi
 }
 
 
@@ -95,8 +104,13 @@ pre_remove()
 {
 	modprobe -r bbswitch
 
-	systemctl disable bumblebeed.service
-	systemctl stop bumblebeed.service
+	if [[ -d /run/openrc ]];then
+		rc-update del bumblebee default
+		rc-service bumblebee stop
+	else
+		systemctl disable bumblebeed.service
+		systemctl stop bumblebeed.service
+	fi
 }
 
 

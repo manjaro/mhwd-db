@@ -22,7 +22,11 @@ MHWDCONFLICTS="video-intel video-ati"
 
 
 # Dependencies
-DEPENDS="bumblebee primus xf86-video-ati xf86-video-intel"
+if [[ -d /run/openrc ]];then
+	DEPENDS="bumblebee-openrc primus xf86-video-ati xf86-video-intel"
+else
+	DEPENDS="bumblebee primus xf86-video-ati xf86-video-intel"
+fi
 DEPENDS_64="lib32-primus"
 DEPKMOD="bbswitch"
 
@@ -74,8 +78,13 @@ post_install()
 
 	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
 
-	systemctl enable bumblebeed.service
-	systemctl start bumblebeed.service
+	if [[ -d /run/openrc ]];then
+		rc-update add bumblebee default
+		rc-service bumblebee start
+	else
+		systemctl enable bumblebeed.service
+		systemctl start bumblebeed.service
+	fi
 }
 
 
@@ -84,8 +93,13 @@ pre_remove()
 {
 	modprobe -r bbswitch
 
-	systemctl disable bumblebeed.service
-	systemctl stop bumblebeed.service
+	if [[ -d /run/openrc ]];then
+		rc-update del bumblebee default
+		rc-service bumblebee stop
+	else
+		systemctl disable bumblebeed.service
+		systemctl stop bumblebeed.service
+	fi
 }
 
 
