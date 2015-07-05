@@ -23,9 +23,9 @@ MHWDCONFLICTS="video-intel video-nvidia video-nvidia-304xx video-nvidia-340xx vi
 
 # Dependencies
 if [[ -d /run/openrc ]];then
-	DEPENDS="bumblebee-openrc primus nvidia-utils xf86-video-intel"
+	DEPENDS="bumblebee-openrc nvidia-utils xf86-video-intel"
 else
-	DEPENDS="bumblebee primus nvidia-utils xf86-video-intel"
+	DEPENDS="bumblebee nvidia-utils xf86-video-intel"
 fi
 DEPENDS_64="lib32-primus lib32-nvidia-utils"
 DEPKMOD="nvidia bbswitch"
