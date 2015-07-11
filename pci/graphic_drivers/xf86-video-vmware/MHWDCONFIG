@@ -2,7 +2,7 @@
 
 NAME="video-vmware"
 INFO="X.org vmware video driver."
-VERSION="2015.04.10"
+VERSION="2015.07.11"
 FREEDRIVER="true"
 PRIORITY="1"
 
@@ -25,6 +25,11 @@ post_install()
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
 
 	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+	
+	if [[ ! -d /run/openrc ]];then
+		systemctl enable vmtoolsd.service
+		systemctl start vmtoolsd.service
+	fi
 }
 
 
@@ -36,5 +41,10 @@ post_remove()
 	fi
 
 	mhwd-gpu --check
+	
+	if [[ ! -d /run/openrc ]];then
+		systemctl disable vmtoolsd.service
+		systemctl stop vmtoolsd.service
+	fi
 }
 
