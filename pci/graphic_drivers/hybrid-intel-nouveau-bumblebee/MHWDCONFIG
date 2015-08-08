@@ -26,7 +26,7 @@ if [[ -d /run/openrc ]];then
 	DEPENDS="bumblebee-openrc xf86-video-nouveau xf86-video-intel"
 else
 	DEPENDS="bumblebee xf86-video-nouveau xf86-video-intel"
-if
+fi
 DEPENDS_64="lib32-primus"
 DEPKMOD="bbswitch"
 
