@@ -2,7 +2,7 @@
 
 NAME="video-intel"
 INFO="X.org intel video driver. Standard open source driver for intel graphic cards."
-VERSION="2015.08.08"
+VERSION="2015.08.18"
 FREEDRIVER="true"
 PRIORITY="2"
 
@@ -23,9 +23,9 @@ XORGFILE="/etc/X11/mhwd.d/intel.conf"
 
 post_install()
 {
-	# Create intel xorg configuration with enabled uxa acceleration method
+	# Create intel xorg configuration with enabled sna acceleration method
 	MHWD_HEADING "${XORGFILE}"
-	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "intel" "${XORGFILE}" 8086 "Option      \"AccelMethod\" \"uxa\""
+	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "intel" "${XORGFILE}" 8086 "Option      \"AccelMethod\" \"sna\""
 	MHWD_ADD_DRI "${XORGFILE}"
 	MHWD_ADD_COMPOSITING "${XORGFILE}"
 	MHWD_ADD_BACKSPACE "${XORGFILE}"

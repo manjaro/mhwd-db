@@ -2,7 +2,7 @@
 
 NAME="video-hybrid-intel-nvidia-340xx-bumblebee"
 INFO="Hybrid bumblebee solution for NVIDIA Optimus Technology - Closed source NVIDIA legacy driver & open source intel driver."
-VERSION="2015.08.08"
+VERSION="2015.08.18"
 FREEDRIVER="false"
 PRIORITY="7"
 
@@ -54,9 +54,9 @@ make_bumblebee_xorg_config()
 
 post_install()
 {
-	# Create intel xorg configuration with enabled uxa acceleration method
+	# Create intel xorg configuration with enabled sna acceleration method
 	MHWD_HEADING "${XORGFILE}"
-	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "intel" "${XORGFILE}" 8086 "Option      \"AccelMethod\" \"uxa\""
+	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "intel" "${XORGFILE}" 8086 "Option      \"AccelMethod\" \"sna\""
 	MHWD_ADD_DRI "${XORGFILE}"
 	MHWD_ADD_COMPOSITING "${XORGFILE}"
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
