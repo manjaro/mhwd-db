@@ -8,7 +8,7 @@
 
 NAME="network-broadcom-wl"
 INFO="Broadcom 802.11 Linux STA wireless driver BCM43142"
-VERSION="2014.01.03"
+VERSION="2015.09.22"
 FREEDRIVER="true"
 PRIORITY="0"
 
