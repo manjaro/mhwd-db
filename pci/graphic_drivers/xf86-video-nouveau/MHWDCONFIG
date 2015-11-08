@@ -2,11 +2,11 @@
 
 NAME="video-nouveau"
 INFO="X.org nouveau video driver. Standard open source driver for nvidia graphic cards."
-VERSION="2015.04.10"
+VERSION="2015.11.08"
 FREEDRIVER="true"
 PRIORITY="2"
 
-CLASSIDS="0300"
+CLASSIDS="0300 0302"
 VENDORIDS="10de"
 DEVICEIDS="*"
 
