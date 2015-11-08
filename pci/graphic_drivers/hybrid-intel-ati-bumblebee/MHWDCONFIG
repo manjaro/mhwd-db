@@ -2,12 +2,12 @@
 
 NAME="video-hybrid-intel-ati-bumblebee"
 INFO="Hybrid bumblebee solution for AMD - Open source ati & intel video driver."
-VERSION="2015.08.18"
+VERSION="2015.11.08"
 FREEDRIVER="true"
 PRIORITY="6"
 
 # AMD cards
-CLASSIDS="0300"
+CLASSIDS="0300 0380"
 VENDORIDS="1002"
 DEVICEIDS="*"
 
