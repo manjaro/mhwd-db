@@ -34,7 +34,7 @@ DEPKMOD="bbswitch"
 XORGFILE="/etc/X11/mhwd.d/intel.conf"
 BXORGFILE="/etc/bumblebee/xorg.conf.nouveau"
 MODULESFILE="/etc/modprobe.d/mhwd-bbswitch.conf"
-
+MODULESBLACKLIST="/etc/modprobe.d/mhwd-nouveau.conf"
 
 
 make_bumblebee_xorg_config()
@@ -71,7 +71,9 @@ post_install()
 
 	MHWD_HEADING "${MODULESFILE}"
 	echo "options bbswitch load_state=0 unload_state=0" >> "${MODULESFILE}"
-	echo "blacklist nouveau" >> "${MODULESFILE}"
+
+	MHWD_HEADING "${MODULESBLACKLIST}"
+	echo "blacklist nouveau" >> "${MODULESBLACKLIST}"
 
 	modprobe bbswitch
 
