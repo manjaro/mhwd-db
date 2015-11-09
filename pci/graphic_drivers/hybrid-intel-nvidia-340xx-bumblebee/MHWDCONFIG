@@ -78,6 +78,7 @@ post_install()
 	# Unload modules if X is not running
 	if [ ! "$(pgrep X)" ];	then
 		rmmod -f nouveau
+		rmmod -f nvidia
 		rmmod -f ttm
 		rmmod -f drm_kms_helper
 		rmmod -f drm

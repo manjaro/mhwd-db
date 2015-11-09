@@ -75,6 +75,11 @@ post_install()
 	MHWD_HEADING "${MODULESBLACKLIST}"
 	echo "blacklist nouveau" >> "${MODULESBLACKLIST}"
 
+	# Unload modules if X is not running
+	if [ ! "$(pgrep X)" ];	then
+		rmmod -f nouveau
+	fi
+
 	modprobe bbswitch
 
 	set_bumblebee_driver "nouveau"
