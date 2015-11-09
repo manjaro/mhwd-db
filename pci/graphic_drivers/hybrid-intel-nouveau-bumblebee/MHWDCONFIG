@@ -2,7 +2,7 @@
 
 NAME="video-hybrid-intel-nouveau-bumblebee"
 INFO="Hybrid bumblebee solution for NVIDIA Optimus Technology - Open source nouveau & intel video driver."
-VERSION="2015.08.18"
+VERSION="2015.11.09"
 FREEDRIVER="true"
 PRIORITY="6"
 
@@ -71,6 +71,7 @@ post_install()
 
 	MHWD_HEADING "${MODULESFILE}"
 	echo "options bbswitch load_state=0 unload_state=0" >> "${MODULESFILE}"
+	echo "blacklist nouveau" >> "${MODULESFILE}"
 
 	modprobe bbswitch
 

@@ -2,7 +2,7 @@
 
 NAME="video-hybrid-intel-nvidia-bumblebee"
 INFO="Hybrid bumblebee solution for NVIDIA Optimus Technology - Closed source NVIDIA driver & open source intel driver."
-VERSION="2015.08.18"
+VERSION="2015.11.09"
 FREEDRIVER="false"
 PRIORITY="8"
 
@@ -70,6 +70,7 @@ post_install()
 
 	MHWD_HEADING "${MODULESBLACKLIST}"
 	echo "blacklist nouveau" >> "${MODULESBLACKLIST}"
+	echo "blacklist nvidia" >> "${MODULESBLACKLIST}"
 	echo "blacklist ttm" >> "${MODULESBLACKLIST}"
 	echo "blacklist drm_kms_helper" >> "${MODULESBLACKLIST}"
 	echo "blacklist drm" >> "${MODULESBLACKLIST}"
