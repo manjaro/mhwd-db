@@ -2,7 +2,7 @@
 
 NAME="video-nvidia"
 INFO="Closed source NVIDIA drivers for linux."
-VERSION="2014.09.29"
+VERSION="2016.01.06"
 FREEDRIVER="false"
 PRIORITY="5"
 
@@ -45,6 +45,9 @@ post_install()
 
 	# Fix screen flickering for some nvidia devices
 	MHWD_FUNC_ON_MATCH 0300 10de "0400 0401 0402 0403 0407 0409 0425" fix_screen_flickering
+
+	# Fix video and game vsync issues thru full composition pipeline
+	sed -i /'Section "Device"'/,/'EndSection'/s/'EndSection'/"\tOption \"metamodes\" \"nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }\"\nEndSection"/g "${XORGFILE}"
 
 	mhwd-gpu --setgl nvidia --setxorg "${XORGFILE}"
 }
