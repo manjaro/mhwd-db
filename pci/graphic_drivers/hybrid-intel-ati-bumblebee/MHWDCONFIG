@@ -2,7 +2,7 @@
 
 NAME="video-hybrid-intel-ati-bumblebee"
 INFO="Hybrid bumblebee solution for AMD - Open source ati & intel video driver."
-VERSION="2015.11.08"
+VERSION="2016.01.28"
 FREEDRIVER="true"
 PRIORITY="6"
 
@@ -65,6 +65,9 @@ post_install()
 	MHWD_ADD_DRI "${XORGFILE}"
 	MHWD_ADD_COMPOSITING "${XORGFILE}"
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
+
+	# Enable next generation of DRI
+	sed -i /'Section "Device"'/,/'EndSection'/s/'EndSection'/"\tOption \"DRI\" \"3\"\nEndSection"/g "${XORGFILE}"
 
 	# Create ati bumblebee xorg configuration
 	make_bumblebee_xorg_config
