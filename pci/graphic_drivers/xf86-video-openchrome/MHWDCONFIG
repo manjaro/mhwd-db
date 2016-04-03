@@ -2,13 +2,14 @@
 
 NAME="video-openchrome"
 INFO="X.org openchrome video driver. Standard open source driver for VIA graphic cards."
-VERSION="2012.05.31"
+VERSION="2016.04.03"
 FREEDRIVER="true"
 PRIORITY="1"
 
 CLASSIDS="0300"
+# via_regs.h v0.4.0
 VENDORIDS="1106"
-DEVICEIDS="1122 3230 3260 3371 5122 7122 8e48"
+DEVICEIDS="3122 7205 3108 3118 3344 3157 3230 3343 3371 1122 5122 7122"
 
 # Dependencies
 DEPENDS="xf86-video-openchrome"
