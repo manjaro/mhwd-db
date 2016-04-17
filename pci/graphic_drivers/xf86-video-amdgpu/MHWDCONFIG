@@ -2,7 +2,7 @@
 
 NAME="video-amdgpu"
 INFO="X.org amdgpu video driver. Standard open source driver for AMD graphic cards."
-VERSION="2016.02.06"
+VERSION="2016.04.17"
 FREEDRIVER="true"
 PRIORITY="3"
 
@@ -20,7 +20,7 @@ XORGFILE="/etc/X11/mhwd.d/amdgpu.conf"
 post_install()
 {
 	MHWD_HEADING "${XORGFILE}"
-	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "radeon" "${XORGFILE}" 1002
+	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "amdgpu" "${XORGFILE}" 1002
 	MHWD_ADD_DRI "${XORGFILE}"
 	MHWD_ADD_COMPOSITING "${XORGFILE}"
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
