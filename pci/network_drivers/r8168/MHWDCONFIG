@@ -6,7 +6,7 @@
 
 NAME="network-r8168"
 INFO="RealTek RTL-8168 Gigabit Ethernet driver"
-VERSION="2013.12.07"
+VERSION="2016.04.20"
 FREEDRIVER="true"
 PRIORITY="0"
 
@@ -17,9 +17,20 @@ DEVICEIDS="4300 8168"
 # Dependencies
 DEPKMOD="r8168"
 
+MODULESBLACKLIST="/etc/modprobe.d/r8169_blacklist.conf"
+
 post_install()
 {
-	echo "blacklist r8169" > /etc/modprobe.d/r8169_blacklist.conf
+	echo "blacklist r8169" > "${MODULESBLACKLIST}"
 	modprobe -r r8169
 	modprobe r8168
+}
+
+post_remove()
+{
+	if [ -e "${MODULESBLACKLIST}" ]; then
+		rm "${MODULESBLACKLIST}"
+	fi
+
+	modprobe -r r8169
 }
