@@ -2,7 +2,7 @@
 
 NAME="video-amdgpu"
 INFO="X.org amdgpu video driver. Standard open source driver for AMD graphic cards."
-VERSION="2016.04.17"
+VERSION="2016.04.29"
 FREEDRIVER="true"
 PRIORITY="3"
 
@@ -15,7 +15,8 @@ DEPENDS="xf86-video-amdgpu"
 
 
 XORGFILE="/etc/X11/mhwd.d/amdgpu.conf"
-
+MODULESFILE="/etc/modprobe.d/mhwd-amdgpu.conf"
+MODULESBLACKLIST="/etc/modprobe.d/mhwd-amdgpu.conf"
 
 post_install()
 {
@@ -27,6 +28,19 @@ post_install()
 
 	# Enable next generation of DRI
 	sed -i /'Section "Device"'/,/'EndSection'/s/'EndSection'/"\tOption \"DRI\" \"3\"\nEndSection"/g "${XORGFILE}"
+
+	MHWD_HEADING "${MODULESFILE}"
+	echo "amdgpu" >> "${MODULESFILE}"
+
+	MHWD_HEADING "${MODULESBLACKLIST}"
+	echo "blacklist radeon" >> "${MODULESBLACKLIST}"
+
+	# Unload modules if X is not running
+	if [ ! "$(pgrep X)" ];	then
+		rmmod -f radeon
+	fi
+
+	modprobe amdgpu
 
 	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
 }
