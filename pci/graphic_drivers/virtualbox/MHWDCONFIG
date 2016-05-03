@@ -2,7 +2,7 @@
 
 NAME="video-virtualbox"
 INFO="X.org virtualbox video driver. Standard driver for use in a virtualbox emulation."
-VERSION="2013.01.01"
+VERSION="2016.05.03"
 FREEDRIVER="true"
 PRIORITY="1"
 
@@ -15,28 +15,12 @@ DEPENDS="virtualbox-guest-utils"
 DEPKMOD="virtualbox-guest-modules"
 
 
-XORGFILE="/etc/X11/mhwd.d/virtualbox.conf"
 MODULESFILE="/etc/modules-load.d/mhwd-virtualbox.conf"
 VBOXSCRIPT="/etc/profile.d/VBoxClient.sh"
 
 
 post_install()
 {
-	MHWD_HEADING "${XORGFILE}"
-	MHWD_ADD_DEVICE_SECTION "vboxvideo" "${XORGFILE}"
-
-	echo ' ' >> "${XORGFILE}"
-	echo 'Section "InputDevice"' >> "${XORGFILE}"
-	echo '	Identifier  "Mouse0"' >> "${XORGFILE}"
-	echo '	Driver      "vboxmouse"' >> "${XORGFILE}"
-	echo '	Option      "Device" "/dev/vboxguest"' >> "${XORGFILE}"
-	echo '	Option      "CorePointer" "yes"' >> "${XORGFILE}"
-	echo 'EndSection' >> "${XORGFILE}"
-	echo ' ' >> "${XORGFILE}"
-
-	MHWD_ADD_COMPOSITING "${XORGFILE}"
-	MHWD_ADD_BACKSPACE "${XORGFILE}"
-
 	MHWD_HEADING "${MODULESFILE}"
 	echo "vboxguest" >> "${MODULESFILE}"
 	echo "vboxsf" >> "${MODULESFILE}"
@@ -51,9 +35,8 @@ post_install()
 	modprobe vboxsf
 	modprobe vboxvideo
 
-	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+	mhwd-gpu --setgl mesa
 }
-
 
 
 post_remove()
@@ -64,10 +47,6 @@ post_remove()
 	if [ -e "${MODULESFILE}" ]; then
 		rm "${MODULESFILE}"
 	fi
-	if [ -e "${VBOXSCRIPT}" ]; then
-		rm "${VBOXSCRIPT}"
-	fi
 
 	mhwd-gpu --check
 }
-
