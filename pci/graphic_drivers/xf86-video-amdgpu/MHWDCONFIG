@@ -2,7 +2,7 @@
 
 NAME="video-amdgpu"
 INFO="X.org amdgpu video driver. Standard open source driver for AMD graphic cards."
-VERSION="2016.04.29"
+VERSION="2016.05.04"
 FREEDRIVER="true"
 PRIORITY="3"
 
@@ -51,6 +51,12 @@ post_remove()
 {
 	if [ -e "${XORGFILE}" ]; then
 		rm "${XORGFILE}"
+	fi
+	if [ -e "${MODULESFILE}" ]; then
+		rm "${MODULESFILE}"
+	fi
+	if [ -e "${MODULESBLACKLIST}" ]; then
+		rm "${MODULESBLACKLIST}"
 	fi
 
 	mhwd-gpu --check
