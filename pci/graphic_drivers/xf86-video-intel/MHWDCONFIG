@@ -2,7 +2,7 @@
 
 NAME="video-intel"
 INFO="X.org intel video driver. Standard open source driver for intel graphic cards."
-VERSION="2016.01.28"
+VERSION="2016.08.22"
 FREEDRIVER="true"
 PRIORITY="2"
 
@@ -31,7 +31,7 @@ post_install()
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
 
 	# Enable next generation of DRI
-	sed -i /'Section "Device"'/,/'EndSection'/s/'EndSection'/"\tOption \"DRI\" \"3\"\nEndSection"/g "${XORGFILE}"
+	sed -i "s/\tOption      \"DRI\"    \"true\"/\tOption      \"DRI3\"    \"1\"\n\tOption      \"DRI\"     \"3\"/g"  "${XORGFILE}"
 
 	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
 }
