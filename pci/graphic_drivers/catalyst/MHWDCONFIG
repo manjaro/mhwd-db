@@ -2,7 +2,7 @@
 
 NAME="video-catalyst"
 INFO="Closed source catalyst drivers for linux."
-VERSION="2016.09.01"
+VERSION="2016.09.03"
 FREEDRIVER="false"
 PRIORITY="5"
 
@@ -14,7 +14,7 @@ DEVICEIDS=">/var/lib/mhwd/ids/pci/catalyst.ids"
 CONFLICTS="catalyst-13.4-utils catalyst-legacy-utils"
 CONFLICTS_64="lib32-catalyst-13.4-utils lib32-catalyst-legacy-utils"
 CONKMOD="catalyst-13.4 catalyst-legacy"
-CONFLDD="xf86-input-acecad xf86-input-aiptek xf86-input-elographics xf86-input-evdev xf86-input-joystick xf86-input-keyboard xf86-input-libinput xf86-input-mouse xf86-input-synaptics xf86-input-void xf86-input-wacom xorg-server-common xorg-server-devel xorg-server-xdmx xorg-server-xephyr xorg-server-xnest xorg-server-xvfb xorg-server xf86-video-fbdev xf86-video-intel xf86-video-v4l xf86-video-vesa xf86-video-intel-sna xf86-video-intel-uxa xf86-video-i810 xf86-video-intel-legacy"
+CONFLDD="xf86-input-acecad xf86-input-aiptek xf86-input-elographics xf86-input-evdev xf86-input-joystick xf86-input-keyboard xf86-input-libinput xf86-input-mouse xf86-input-synaptics xf86-input-void xf86-input-wacom xorg-server-common xorg-server-devel xorg-server-xdmx xorg-server-xephyr xorg-server-xnest xorg-server-xvfb xorg-server-xwayland xorg-server xf86-video-fbdev xf86-video-intel xf86-video-v4l xf86-video-vesa xf86-video-intel-sna xf86-video-intel-uxa xf86-video-i810 xf86-video-intel-legacy"
 
 # Dependencies
 DEPENDS="catalyst-input catalyst-video catalyst-server catalyst-utils"
