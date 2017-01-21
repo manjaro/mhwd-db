@@ -1,8 +1,8 @@
 # mhwd Driver Config
 
 NAME="video-r128"
-INFO="X.org r128 video driver. Standard open source driver for ATI Rage128 graphic cards."
-VERSION="2012.09.18"
+INFO="X.org modesetting video driver. Standard open source driver for ATI Rage128 graphic cards."
+VERSION="2017.01.21"
 FREEDRIVER="true"
 PRIORITY="1"
 
@@ -11,7 +11,7 @@ VENDORIDS="1002"
 DEVICEIDS="4C45 4C46 4D46 4D4C 5041 5042 5043 5044 5045 5046 5047 5048 5049 504A 504B 504C 504D 504E 504F 5050 5051 5052 5053 5054 5055 5056 5057 5058 5245 5246 5247 524B 524C 5345 5346 5347 5348 534B 534C 534D 534E 5446 544C 5452 5453 5454 5455"
 
 # Dependencies
-DEPENDS="xf86-video-r128"
+DEPENDS=""
 
 
 XORGFILE="/etc/X11/mhwd.d/r128.conf"
@@ -19,13 +19,7 @@ XORGFILE="/etc/X11/mhwd.d/r128.conf"
 
 post_install()
 {
-	MHWD_HEADING "${XORGFILE}"
-	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "r128" "${XORGFILE}" 1002
-	MHWD_ADD_DRI "${XORGFILE}"
-	MHWD_ADD_COMPOSITING "${XORGFILE}"
-	MHWD_ADD_BACKSPACE "${XORGFILE}"
-
-	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+	mhwd-gpu --setgl mesa
 }
 
 
@@ -38,4 +32,3 @@ post_remove()
 
 	mhwd-gpu --check
 }
-

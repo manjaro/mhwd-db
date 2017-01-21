@@ -2,7 +2,7 @@
 
 NAME="video-mga"
 INFO="X.org modesetting video driver. Standard open source driver for matrox graphic cards."
-VERSION="2015.04.10"
+VERSION="2017.01.21"
 FREEDRIVER="true"
 PRIORITY="1"
 
@@ -19,13 +19,7 @@ XORGFILE="/etc/X11/mhwd.d/mga.conf"
 
 post_install()
 {
-	MHWD_HEADING "${XORGFILE}"
-	MHWD_ADD_DEVICE_SECTION "mga" "${XORGFILE}"
-	MHWD_ADD_DRI "${XORGFILE}"
-	MHWD_ADD_COMPOSITING "${XORGFILE}"
-	MHWD_ADD_BACKSPACE "${XORGFILE}"
-
-	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+	mhwd-gpu --setgl mesa
 }
 
 
@@ -38,4 +32,3 @@ post_remove()
 
 	mhwd-gpu --check
 }
-
