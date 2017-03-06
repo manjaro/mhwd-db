@@ -2,7 +2,7 @@
 
 NAME="video-nvidia"
 INFO="Closed source NVIDIA drivers for linux."
-VERSION="2016.04.25"
+VERSION="2017.03.06"
 FREEDRIVER="false"
 PRIORITY="5"
 
@@ -47,6 +47,13 @@ post_install()
 	MHWD_FUNC_ON_MATCH 0300 10de "0400 0401 0402 0403 0407 0409 0425" fix_screen_flickering
 
 	mhwd-gpu --setgl nvidia --setxorg "${XORGFILE}"
+
+	# Without this 'glxgears' don't work in live-session
+	MODULES_LOAD="/etc/modules-load.d"
+	echo "nvidia-drm" >> "${MODULES_LOAD}/mhwd-gpu.conf"
+	if [ ! "$(pgrep X)" ];	then
+		modprobe nvidia-drm
+	fi
 }
 
 
