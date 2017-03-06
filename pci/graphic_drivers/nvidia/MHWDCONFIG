@@ -2,7 +2,7 @@
 
 NAME="video-nvidia"
 INFO="Closed source NVIDIA drivers for linux."
-VERSION="2016.04.25"
+VERSION="2017.03.06"
 FREEDRIVER="false"
 PRIORITY="5"
 
@@ -21,7 +21,7 @@ MHWDCONFLICTS="video-hybrid-intel-nvidia-bumblebee video-nvidia-304xx video-nvid
 # Dependencies
 DEPENDS="nvidia-utils"
 DEPENDS_64="lib32-nvidia-utils"
-DEPKMOD="nvidia"
+DEPKMOD="nvidia nvidia-drm"
 
 
 XORGFILE="/etc/X11/mhwd.d/nvidia.conf"
