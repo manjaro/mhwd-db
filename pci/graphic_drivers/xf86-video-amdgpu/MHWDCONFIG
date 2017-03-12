@@ -13,7 +13,6 @@ DEVICEIDS=">/var/lib/mhwd/ids/pci/amdgpu.ids"
 # Dependencies
 DEPENDS="xf86-video-amdgpu"
 
-
 XORGFILE="/etc/X11/mhwd.d/amdgpu.conf"
 MODULESFILE="/etc/modules-load.d/mhwd-amdgpu.conf"
 MODULESBLACKLIST="/etc/modprobe.d/mhwd-amdgpu.conf"
@@ -42,10 +41,8 @@ post_install()
 
 	modprobe amdgpu
 
-	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+	mhwd-gpu --setxorg "${XORGFILE}"
 }
-
-
 
 post_remove()
 {
@@ -61,4 +58,3 @@ post_remove()
 
 	mhwd-gpu --check
 }
-

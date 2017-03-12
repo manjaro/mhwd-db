@@ -2,7 +2,7 @@
 
 NAME="video-s3virge"
 INFO="X.org modesetting video driver. Standard open source driver for s3virge graphic cards."
-VERSION="2017.01.21"
+VERSION="2017.03.12"
 FREEDRIVER="true"
 PRIORITY="1"
 
@@ -12,23 +12,3 @@ DEVICEIDS="5631 883D 8A01 8A10 8C01 8C02 8C03"
 
 # Dependencies
 DEPENDS=""
-
-
-XORGFILE="/etc/X11/mhwd.d/s3virge.conf"
-
-
-post_install()
-{
-	mhwd-gpu --setgl mesa
-}
-
-
-
-post_remove()
-{
-	if [ -e "${XORGFILE}" ]; then
-		rm "${XORGFILE}"
-	fi
-
-	mhwd-gpu --check
-}

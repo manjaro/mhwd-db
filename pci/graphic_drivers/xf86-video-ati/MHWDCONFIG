@@ -2,7 +2,7 @@
 
 NAME="video-ati"
 INFO="X.org ati video driver. Standard open source driver for AMD graphic cards."
-VERSION="2016.08.22"
+VERSION="2017.03.12"
 FREEDRIVER="true"
 PRIORITY="2"
 
@@ -13,9 +13,7 @@ DEVICEIDS=">/var/lib/mhwd/ids/pci/ati.ids"
 # Dependencies
 DEPENDS="xf86-video-ati"
 
-
 XORGFILE="/etc/X11/mhwd.d/ati.conf"
-
 
 post_install()
 {
@@ -28,10 +26,8 @@ post_install()
 	# Enable next generation of DRI
 	sed -i "s/\tOption      \"DRI\"    \"true\"/\tOption      \"DRI3\"    \"1\"\n\tOption      \"DRI\"     \"3\"/g"  "${XORGFILE}"
 
-	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+	mhwd-gpu --setxorg "${XORGFILE}"
 }
-
-
 
 post_remove()
 {
@@ -41,4 +37,3 @@ post_remove()
 
 	mhwd-gpu --check
 }
-

@@ -2,7 +2,7 @@
 
 NAME="video-s3"
 INFO="X.org modesetting video driver. Standard open source driver for s3 graphic cards."
-VERSION="2017.01.21"
+VERSION="2017.03.12"
 FREEDRIVER="true"
 PRIORITY="1"
 
@@ -12,23 +12,3 @@ DEVICEIDS="0551 8811 8812 8814 8880 88B0 88C0 88C1 88D0 88D1 88F0 8901 8902 8904
 
 # Dependencies
 DEPENDS="xf86-video-s3"
-
-
-XORGFILE="/etc/X11/mhwd.d/s3.conf"
-
-
-post_install()
-{
-	mhwd-gpu --setgl
-}
-
-
-
-post_remove()
-{
-	if [ -e "${XORGFILE}" ]; then
-		rm "${XORGFILE}"
-	fi
-
-	mhwd-gpu --check
-}

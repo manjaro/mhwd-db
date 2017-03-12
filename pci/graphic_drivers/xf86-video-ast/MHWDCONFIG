@@ -2,7 +2,7 @@
 
 NAME="video-ast"
 INFO="X.org modesetting video driver. Standard open source driver for ASPEED AST graphic cards."
-VERSION="2017.01.21"
+VERSION="2017.03.12"
 FREEDRIVER="true"
 PRIORITY="1"
 
@@ -12,23 +12,3 @@ DEVICEIDS="2000 2010 1180"
 
 # Dependencies
 DEPENDS=""
-
-
-XORGFILE="/etc/X11/mhwd.d/ast.conf"
-
-
-post_install()
-{
-	mhwd-gpu --setgl mesa
-}
-
-
-
-post_remove()
-{
-	if [ -e "${XORGFILE}" ]; then
-		rm "${XORGFILE}"
-	fi
-
-	mhwd-gpu --check
-}

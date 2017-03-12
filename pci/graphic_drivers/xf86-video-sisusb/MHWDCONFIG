@@ -2,7 +2,7 @@
 
 NAME="video-sisusb"
 INFO="X.org sisusb video driver. Standard open source driver for SiS usb graphic cards."
-VERSION="2012.05.31"
+VERSION="2017.03.12"
 FREEDRIVER="true"
 PRIORITY="1"
 
@@ -13,9 +13,7 @@ DEVICEIDS="8325"
 # Dependencies
 DEPENDS="xf86-video-sisusb"
 
-
 XORGFILE="/etc/X11/mhwd.d/sisusb.conf"
-
 
 post_install()
 {
@@ -25,10 +23,8 @@ post_install()
 	MHWD_ADD_COMPOSITING "${XORGFILE}"
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
 
-	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+	mhwd-gpu --setxorg "${XORGFILE}"
 }
-
-
 
 post_remove()
 {
@@ -38,4 +34,3 @@ post_remove()
 
 	mhwd-gpu --check
 }
-

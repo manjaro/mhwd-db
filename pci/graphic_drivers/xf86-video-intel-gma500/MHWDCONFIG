@@ -2,7 +2,7 @@
 
 NAME="video-intel-gma500"
 INFO="X.org modesetting video driver optimized for intel gma500 graphic cards"
-VERSION="2017.01.21"
+VERSION="2017.03.12"
 FREEDRIVER="true"
 PRIORITY="3"
 
@@ -12,23 +12,3 @@ DEVICEIDS="8108"
 
 # Dependencies
 DEPENDS=""
-
-
-XORGFILE="/etc/X11/mhwd.d/intel-gma500.conf"
-
-
-post_install()
-{
-	mhwd-gpu --setgl mesa
-}
-
-
-
-post_remove()
-{
-	if [ -e "${XORGFILE}" ]; then
-		rm "${XORGFILE}"
-	fi
-
-	mhwd-gpu --check
-}

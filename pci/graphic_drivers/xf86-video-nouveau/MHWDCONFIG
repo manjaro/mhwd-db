@@ -2,7 +2,7 @@
 
 NAME="video-nouveau"
 INFO="X.org nouveau video driver. Standard open source driver for nvidia graphic cards."
-VERSION="2016.01.28"
+VERSION="2017.03.12"
 FREEDRIVER="true"
 PRIORITY="2"
 
@@ -16,9 +16,7 @@ MHWDCONFLICTS="video-hybrid-intel-nouveau-bumblebee"
 # Dependencies
 DEPENDS="xf86-video-nouveau"
 
-
 XORGFILE="/etc/X11/mhwd.d/nouveau.conf"
-
 
 post_install()
 {
@@ -31,10 +29,8 @@ post_install()
 	# Enable next generation of DRI
 	sed -i /'Section "Device"'/,/'EndSection'/s/'EndSection'/"\tOption \"DRI\" \"3\"\nEndSection"/g "${XORGFILE}"
 
-	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+	mhwd-gpu --setxorg "${XORGFILE}"
 }
-
-
 
 post_remove()
 {
@@ -44,4 +40,3 @@ post_remove()
 
 	mhwd-gpu --check
 }
-

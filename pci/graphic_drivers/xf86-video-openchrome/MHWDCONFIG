@@ -2,7 +2,7 @@
 
 NAME="video-openchrome"
 INFO="X.org openchrome video driver. Standard open source driver for VIA graphic cards."
-VERSION="2016.04.03"
+VERSION="2017.03.12"
 FREEDRIVER="true"
 PRIORITY="1"
 
@@ -14,9 +14,7 @@ DEVICEIDS="3122 7205 3108 3118 3344 3157 3230 3343 3371 1122 5122 7122"
 # Dependencies
 DEPENDS="xf86-video-openchrome"
 
-
 XORGFILE="/etc/X11/mhwd.d/openchrome.conf"
-
 
 post_install()
 {
@@ -26,10 +24,8 @@ post_install()
 	MHWD_ADD_COMPOSITING "${XORGFILE}"
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
 
-	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+	mhwd-gpu --setxorg "${XORGFILE}"
 }
-
-
 
 post_remove()
 {
@@ -39,4 +35,3 @@ post_remove()
 
 	mhwd-gpu --check
 }
-

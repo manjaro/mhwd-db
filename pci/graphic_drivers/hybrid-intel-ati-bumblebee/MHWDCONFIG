@@ -2,7 +2,7 @@
 
 NAME="video-hybrid-intel-ati-bumblebee"
 INFO="Hybrid bumblebee solution for AMD - Open source ati & intel video driver."
-VERSION="2016.01.28"
+VERSION="2017.03.12"
 FREEDRIVER="true"
 PRIORITY="6"
 
@@ -20,7 +20,6 @@ BLACKLISTEDDEVICEIDS="0be1 8108"
 # Conflicts with other mhwd configs
 MHWDCONFLICTS="video-intel video-ati"
 
-
 # Dependencies
 if [[ -d /run/openrc ]];then
 	DEPENDS="bumblebee-openrc primus xf86-video-ati xf86-video-intel"
@@ -30,12 +29,9 @@ fi
 DEPENDS_64="lib32-primus"
 DEPKMOD="bbswitch"
 
-
 XORGFILE="/etc/X11/mhwd.d/intel.conf"
 BXORGFILE="/etc/bumblebee/xorg.conf.ati"
 MODULESFILE="/etc/modprobe.d/mhwd-bbswitch.conf"
-
-
 
 make_bumblebee_xorg_config()
 {
@@ -55,7 +51,6 @@ make_bumblebee_xorg_config()
 	echo '    Device         "Device0"' >> "${BXORGFILE}"
 	echo 'EndSection' >> "${BXORGFILE}"
 }
-
 
 post_install()
 {
@@ -79,7 +74,7 @@ post_install()
 
 	set_bumblebee_driver "radeon"
 
-	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+	mhwd-gpu --setxorg "${XORGFILE}"
 
 	if [[ -d /run/openrc ]];then
 		rc-update add bumblebee default
@@ -89,8 +84,6 @@ post_install()
 		systemctl start bumblebeed.service
 	fi
 }
-
-
 
 pre_remove()
 {
@@ -105,8 +98,6 @@ pre_remove()
 	fi
 }
 
-
-
 post_remove()
 {
 	if [ -e "${XORGFILE}" ]; then
@@ -119,10 +110,7 @@ post_remove()
 	mhwd-gpu --check
 }
 
-
-
 set_bumblebee_driver()
 {
 	sed -i "/(#)/!s/^[ ]*Driver[ ]*=.*/Driver=$1/g" /etc/bumblebee/bumblebee.conf
 }
-

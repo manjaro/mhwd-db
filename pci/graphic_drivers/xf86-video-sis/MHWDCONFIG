@@ -2,7 +2,7 @@
 
 NAME="video-sis"
 INFO="X.org modesetting video driver. Standard open source driver for SiS graphic cards."
-VERSION="2012.12.04"
+VERSION="2017.03.12"
 FREEDRIVER="true"
 PRIORITY="2"
 
@@ -12,23 +12,3 @@ DEVICEIDS="0001 0002 0008 0200 0204 0205 0215 0225 0406 0496 0601 5107 5511 5513
 
 # Dependencies
 DEPENDS=""
-
-
-XORGFILE="/etc/X11/mhwd.d/sis.conf"
-
-
-post_install()
-{
-	mhwd-gpu --setgl mesa
-}
-
-
-
-post_remove()
-{
-	if [ -e "${XORGFILE}" ]; then
-		rm "${XORGFILE}"
-	fi
-
-	mhwd-gpu --check
-}

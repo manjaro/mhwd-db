@@ -2,7 +2,7 @@
 
 NAME="video-mach64"
 INFO="X.org modesetting video driver. Standard open source driver for ati/mach64 graphic cards."
-VERSION="2017.01.21"
+VERSION="2017.03.12"
 FREEDRIVER="true"
 PRIORITY="1"
 
@@ -12,23 +12,3 @@ DEVICEIDS="4354 4358 4554 4654 4754 4755 4756 4758 4C54 5654 5655 5656"
 
 # Dependencies
 DEPENDS=""
-
-
-XORGFILE="/etc/X11/mhwd.d/mach64.conf"
-
-
-post_install()
-{
-	mhwd-gpu --setgl mesa
-}
-
-
-
-post_remove()
-{
-	if [ -e "${XORGFILE}" ]; then
-		rm "${XORGFILE}"
-	fi
-
-	mhwd-gpu --check
-}

@@ -2,7 +2,7 @@
 
 NAME="video-catalyst"
 INFO="Closed source catalyst drivers for linux."
-VERSION="2016.09.03"
+VERSION="2017.03.12"
 FREEDRIVER="false"
 PRIORITY="5"
 
@@ -21,9 +21,7 @@ DEPENDS="catalyst-input catalyst-video catalyst-server catalyst-utils"
 DEPENDS_64="lib32-catalyst-utils"
 DEPKMOD="catalyst"
 
-
 XORGFILE="/etc/X11/mhwd.d/catalyst.conf"
-
 
 post_install()
 {
@@ -31,10 +29,8 @@ post_install()
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
 	aticonfig -o "${XORGFILE}" --initial --nobackup &>/dev/null
 
-	mhwd-gpu --setgl catalyst --setxorg "${XORGFILE}"
+	mhwd-gpu --setmod catalyst --setxorg "${XORGFILE}"
 }
-
-
 
 post_remove()
 {
@@ -44,4 +40,3 @@ post_remove()
 
 	mhwd-gpu --check
 }
-

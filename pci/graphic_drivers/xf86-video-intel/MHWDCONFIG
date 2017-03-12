@@ -2,7 +2,7 @@
 
 NAME="video-intel"
 INFO="X.org intel video driver. Standard open source driver for intel graphic cards."
-VERSION="2016.08.22"
+VERSION="2017.03.12"
 FREEDRIVER="true"
 PRIORITY="2"
 
@@ -17,9 +17,7 @@ MHWDCONFLICTS="video-hybrid-intel-nvidia-bumblebee video-hybrid-intel-nouveau-bu
 # Dependencies
 DEPENDS="xf86-video-intel"
 
-
 XORGFILE="/etc/X11/mhwd.d/intel.conf"
-
 
 post_install()
 {
@@ -33,10 +31,8 @@ post_install()
 	# Enable next generation of DRI
 	sed -i "s/\tOption      \"DRI\"    \"true\"/\tOption      \"DRI3\"    \"1\"\n\tOption      \"DRI\"     \"3\"/g"  "${XORGFILE}"
 
-	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+	mhwd-gpu --setxorg "${XORGFILE}"
 }
-
-
 
 post_remove()
 {
@@ -46,4 +42,3 @@ post_remove()
 
 	mhwd-gpu --check
 }
-

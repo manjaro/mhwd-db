@@ -2,7 +2,7 @@
 
 NAME="video-virtualbox"
 INFO="X.org virtualbox video driver. Standard driver for use in a virtualbox emulation."
-VERSION="2016.05.03"
+VERSION="2017.03.12"
 FREEDRIVER="true"
 PRIORITY="1"
 
@@ -14,10 +14,8 @@ DEVICEIDS="*"
 DEPENDS="virtualbox-guest-utils"
 DEPKMOD="virtualbox-guest-modules"
 
-
 MODULESFILE="/etc/modules-load.d/mhwd-virtualbox.conf"
 VBOXSCRIPT="/etc/profile.d/VBoxClient.sh"
-
 
 post_install()
 {
@@ -34,19 +32,4 @@ post_install()
 	modprobe vboxguest
 	modprobe vboxsf
 	modprobe vboxvideo
-
-	mhwd-gpu --setgl mesa
-}
-
-
-post_remove()
-{
-	if [ -e "${XORGFILE}" ]; then
-		rm "${XORGFILE}"
-	fi
-	if [ -e "${MODULESFILE}" ]; then
-		rm "${MODULESFILE}"
-	fi
-
-	mhwd-gpu --check
 }

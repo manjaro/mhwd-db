@@ -2,7 +2,7 @@
 
 NAME="video-savage"
 INFO="X.org modesetting video driver. Standard open source driver for S3 savage graphic cards."
-VERSION="2017.01.21"
+VERSION="2017.03.12"
 FREEDRIVER="true"
 PRIORITY="1"
 
@@ -12,23 +12,3 @@ DEVICEIDS="8A20 8A21 8A22 8A25 8A26 8C10 8C11 8C12 8C13 8C22 8C24 8C26 8C2A 8C2B
 
 # Dependencies
 DEPENDS=""
-
-
-XORGFILE="/etc/X11/mhwd.d/savage.conf"
-
-
-post_install()
-{
-	mhwd-gpu --setgl mesa
-}
-
-
-
-post_remove()
-{
-	if [ -e "${XORGFILE}" ]; then
-		rm "${XORGFILE}"
-	fi
-
-	mhwd-gpu --check
-}

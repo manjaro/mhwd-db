@@ -2,7 +2,7 @@
 
 NAME="video-nvidia-304xx"
 INFO="Closed source NVIDIA legacy drivers for linux."
-VERSION="2016.04.25"
+VERSION="2017.03.12"
 FREEDRIVER="false"
 PRIORITY="3"
 
@@ -23,17 +23,12 @@ DEPENDS="nvidia-304xx-utils"
 DEPENDS_64="lib32-nvidia-304xx-utils"
 DEPKMOD="nvidia-304xx"
 
-
 XORGFILE="/etc/X11/mhwd.d/nvidia.conf"
-
-
 
 fix_screen_flickering()
 {
 	sed -i /'Section "Device"'/,/'EndSection'/s/'EndSection'/"\tOption \"RegistryDwords\" \"PowerMizerEnable=0x1; PerfLevelSrc=0x2222; PowerMizerDefault=0x2; PowerMizerDefaultAC=0x1\"\nEndSection"/g "${XORGFILE}"
 }
-
-
 
 post_install()
 {
@@ -46,10 +41,8 @@ post_install()
 	# Fix screen flickering for some nvidia devices
 	MHWD_FUNC_ON_MATCH 0300 10de "0400 0401 0402 0403 0407 0409 0425" fix_screen_flickering
 
-	mhwd-gpu --setgl nvidia --setxorg "${XORGFILE}"
+	mhwd-gpu --setmod nvidia --setxorg "${XORGFILE}"
 }
-
-
 
 post_remove()
 {
@@ -59,4 +52,3 @@ post_remove()
 
 	mhwd-gpu --check
 }
-

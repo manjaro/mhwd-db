@@ -2,7 +2,7 @@
 
 NAME="video-vmware"
 INFO="X.org vmware video driver."
-VERSION="2015.07.11"
+VERSION="2017.03.12"
 FREEDRIVER="true"
 PRIORITY="1"
 
@@ -15,7 +15,6 @@ DEPENDS="xf86-video-vmware xf86-input-vmmouse open-vm-tools"
 
 XORGFILE="/etc/X11/mhwd.d/vmware.conf"
 
-
 post_install()
 {
 	MHWD_HEADING "${XORGFILE}"
@@ -24,15 +23,13 @@ post_install()
 	MHWD_ADD_COMPOSITING "${XORGFILE}"
 	MHWD_ADD_BACKSPACE "${XORGFILE}"
 
-	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+	mhwd-gpu --setxorg "${XORGFILE}"
 	
 	if [[ ! -d /run/openrc ]];then
 		systemctl enable vmtoolsd.service
 		systemctl start vmtoolsd.service
 	fi
 }
-
-
 
 post_remove()
 {
@@ -47,4 +44,3 @@ post_remove()
 		systemctl stop vmtoolsd.service
 	fi
 }
-

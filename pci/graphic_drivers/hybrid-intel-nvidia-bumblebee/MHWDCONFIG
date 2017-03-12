@@ -2,7 +2,7 @@
 
 NAME="video-hybrid-intel-nvidia-bumblebee"
 INFO="Hybrid bumblebee solution for NVIDIA Optimus Technology - Closed source NVIDIA driver & open source intel driver."
-VERSION="2016.02.05"
+VERSION="2017.03.12"
 FREEDRIVER="false"
 PRIORITY="8"
 
@@ -20,7 +20,6 @@ BLACKLISTEDDEVICEIDS="0be1 8108"
 # Conflicts with other mhwd configs
 MHWDCONFLICTS="video-intel video-nvidia video-nvidia-304xx video-nvidia-340xx video-hybrid-intel-nvidia-340xx-bumblebee video-hybrid-intel-nouveau-bumblebee"
 
-
 # Dependencies
 if [[ -d /run/openrc ]];then
 	DEPENDS="bumblebee-openrc nvidia-utils xf86-video-intel"
@@ -30,13 +29,10 @@ fi
 DEPENDS_64="lib32-primus lib32-nvidia-utils"
 DEPKMOD="nvidia bbswitch"
 
-
 XORGFILE="/etc/X11/mhwd.d/intel.conf"
 BXORGFILE="/etc/bumblebee/xorg.conf.nvidia"
 MODULESFILE="/etc/modprobe.d/mhwd-bbswitch.conf"
 MODULESBLACKLIST="/etc/modprobe.d/mhwd-nvidia.conf"
-
-
 
 make_bumblebee_xorg_config()
 {
@@ -50,7 +46,6 @@ make_bumblebee_xorg_config()
 
 	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "nvidia" "${BXORGFILE}" 10de "VendorName \"NVIDIA Corporation\"|Option \"NoLogo\" \"true\"|Option \"UseEDID\" \"false\"|Option \"ConnectedMonitor\" \"DFP\""
 }
-
 
 post_install()
 {
@@ -88,12 +83,11 @@ post_install()
 		rmmod -f drm
 	fi
 
-
 	modprobe bbswitch
 
 	set_bumblebee_driver "nvidia"
 
-	mhwd-gpu --setgl mesa --setxorg "${XORGFILE}"
+	mhwd-gpu --setxorg "${XORGFILE}"
 
 	if [[ -d /run/openrc ]];then
 		rc-update add bumblebee default
@@ -103,8 +97,6 @@ post_install()
 		systemctl start bumblebeed.service
 	fi
 }
-
-
 
 pre_remove()
 {
@@ -118,8 +110,6 @@ pre_remove()
 		systemctl stop bumblebeed.service
 	fi
 }
-
-
 
 post_remove()
 {
@@ -136,10 +126,7 @@ post_remove()
 	mhwd-gpu --check
 }
 
-
-
 set_bumblebee_driver()
 {
 	sed -i "/(#)/!s/^[ ]*Driver[ ]*=.*/Driver=$1/g" /etc/bumblebee/bumblebee.conf
 }
-
