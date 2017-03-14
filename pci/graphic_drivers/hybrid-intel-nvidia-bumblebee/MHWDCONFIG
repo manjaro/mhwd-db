@@ -21,11 +21,7 @@ BLACKLISTEDDEVICEIDS="0be1 8108"
 MHWDCONFLICTS="video-intel video-nvidia video-nvidia-304xx video-nvidia-340xx video-hybrid-intel-nvidia-340xx-bumblebee video-hybrid-intel-nouveau-bumblebee"
 
 # Dependencies
-if [[ -d /run/openrc ]];then
-	DEPENDS="bumblebee-openrc nvidia-utils xf86-video-intel"
-else
-	DEPENDS="bumblebee nvidia-utils xf86-video-intel"
-fi
+DEPENDS="bumblebee nvidia-utils xf86-video-intel"
 DEPENDS_64="lib32-primus lib32-nvidia-utils"
 DEPKMOD="nvidia bbswitch"
 
