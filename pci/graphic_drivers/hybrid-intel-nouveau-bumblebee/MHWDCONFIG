@@ -22,6 +22,7 @@ MHWDCONFLICTS="video-intel video-nouveau video-hybrid-intel-nvidia-bumblebee"
 
 # Dependencies
 DEPENDS="bumblebee xf86-video-nouveau xf86-video-intel"
+[[ -d /run/openrc ]] && DEPENDS="bumblebee-openrc xf86-video-nouveau xf86-video-intel"
 DEPENDS_64="lib32-primus"
 DEPKMOD="bbswitch"
 

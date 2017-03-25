@@ -22,6 +22,7 @@ MHWDCONFLICTS="video-intel video-nvidia video-nvidia-304xx video-nvidia-340xx vi
 
 # Dependencies
 DEPENDS="bumblebee nvidia-340xx-utils xf86-video-intel"
+[[ -d /run/openrc ]] && DEPENDS="bumblebee-openrc nvidia-340xx-utils xf86-video-intel"
 DEPENDS_64="lib32-primus lib32-nvidia-340xx-utils"
 DEPKMOD="nvidia-340xx bbswitch"
 
