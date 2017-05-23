@@ -40,6 +40,14 @@ post_install()
     mhwd-gpu --check
 }
 
+pre_remove()
+{
+    if [ -f "${MODULESFILE}" ]
+        then
+            rm "${MODULESFILE}"
+    fi
+}
+
 post_remove()
 {
     mhwd-gpu --check
