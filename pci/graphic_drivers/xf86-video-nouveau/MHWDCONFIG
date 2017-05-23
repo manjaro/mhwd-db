@@ -2,7 +2,7 @@
 
 NAME="video-nouveau"
 INFO="X.org nouveau video driver. Standard open source driver for nvidia graphic cards."
-VERSION="2017.03.12"
+VERSION="2017.03.24"
 FREEDRIVER="true"
 PRIORITY="2"
 
@@ -10,33 +10,27 @@ CLASSIDS="0300 0302"
 VENDORIDS="10de"
 DEVICEIDS="*"
 
-# Conflicts with other mhwd configs
-MHWDCONFLICTS="video-hybrid-intel-nouveau-bumblebee"
-
 # Dependencies
-DEPENDS="xf86-video-nouveau"
+DEPENDS="xf86-video-nouveau libva-mesa-driver libva-vdpau-driver mesa-vdpau"
+DEPENDS_64="lib32-libva-vdpau-driver lib32-mesa-vdpau"
 
-XORGFILE="/etc/X11/mhwd.d/nouveau.conf"
+
+pre_install()
+{
+    # Cleaning up old installation files.
+    ## Xorg
+    if [ -f "/etc/X11/mhwd.d/nouveau.conf" ]
+        then
+            rm "/etc/X11/mhwd.d/nouveau.conf"
+    fi
+}
 
 post_install()
 {
-	MHWD_HEADING "${XORGFILE}"
-	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "nouveau" "${XORGFILE}" 10de
-	MHWD_ADD_DRI "${XORGFILE}"
-	MHWD_ADD_COMPOSITING "${XORGFILE}"
-	MHWD_ADD_BACKSPACE "${XORGFILE}"
-
-	# Enable next generation of DRI
-	sed -i /'Section "Device"'/,/'EndSection'/s/'EndSection'/"\tOption \"DRI\" \"3\"\nEndSection"/g "${XORGFILE}"
-
-	mhwd-gpu --setxorg "${XORGFILE}"
+    mhwd-gpu --check
 }
 
 post_remove()
 {
-	if [ -e "${XORGFILE}" ]; then
-		rm "${XORGFILE}"
-	fi
-
-	mhwd-gpu --check
+    mhwd-gpu --check
 }

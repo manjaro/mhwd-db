@@ -2,7 +2,7 @@
 
 NAME="video-ati"
 INFO="X.org ati video driver. Standard open source driver for AMD graphic cards."
-VERSION="2017.03.12"
+VERSION="2017.03.24"
 FREEDRIVER="true"
 PRIORITY="2"
 
@@ -10,30 +10,30 @@ CLASSIDS="0300 0380"
 VENDORIDS="1002"
 DEVICEIDS=">/var/lib/mhwd/ids/pci/ati.ids"
 
-# Dependencies
-DEPENDS="xf86-video-ati"
+# Conflicts with other mhwd configs
+MHWDCONFLICTS="video-hybrid-intel-ati-bumblebee"
 
-XORGFILE="/etc/X11/mhwd.d/ati.conf"
+# Dependencies
+
+DEPENDS="xf86-video-ati libva-mesa-driver libva-vdpau-driver mesa-vdpau"
+DEPENDS_64="lib32-libva-vdpau-driver lib32-mesa-vdpau"
+
+pre_install()
+{
+    # Cleaning up old installation files.
+    ## Xorg
+    if [ -f "/etc/X11/mhwd.d/ati.conf" ]
+        then
+            rm "/etc/X11/mhwd.d/ati.conf"
+    fi
+}
 
 post_install()
 {
-	MHWD_HEADING "${XORGFILE}"
-	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "radeon" "${XORGFILE}" 1002
-	MHWD_ADD_DRI "${XORGFILE}"
-	MHWD_ADD_COMPOSITING "${XORGFILE}"
-	MHWD_ADD_BACKSPACE "${XORGFILE}"
-
-	# Enable next generation of DRI
-	sed -i "s/\tOption      \"DRI\"    \"true\"/\tOption      \"DRI3\"    \"1\"\n\tOption      \"DRI\"     \"3\"/g"  "${XORGFILE}"
-
-	mhwd-gpu --setxorg "${XORGFILE}"
+    mhwd-gpu --check
 }
 
 post_remove()
 {
-	if [ -e "${XORGFILE}" ]; then
-		rm "${XORGFILE}"
-	fi
-
-	mhwd-gpu --check
+    mhwd-gpu --check
 }
