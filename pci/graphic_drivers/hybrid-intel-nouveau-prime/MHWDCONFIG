@@ -1,0 +1,38 @@
+# mhwd Driver Config
+
+NAME="video-hybrid-intel-nouveau-prime"
+INFO="Solution for hybrid Intel + Nvidia systems."
+VERSION="2017.03.12"
+FREEDRIVER="true"
+PRIORITY="6"
+
+# Intel cards
+CLASSIDS="0300"
+VENDORIDS="8086"
+DEVICEIDS="*"
+BLACKLISTEDDEVICEIDS="0be1 8108"
+
+# Nvidia Cards
+CLASSIDS="0300 0302"
+VENDORIDS="10de"
+DEVICEIDS="*"
+
+
+# Conflicts with other mhwd configs
+MHWDCONFLICTS="video-intel video-nouveau video-hybrid-intel-nvidia-bumblebee"
+
+# Dependencies
+DEPENDS="xf86-video-intel xf86-video-nouveau vulkan-intel vulkan-radeon libva-mesa-driver libva-vdpau-driver mesa-vdpau"
+DEPENDS_64="lib32-vulkan-intel lib32-libva-vdpau-driver lib32-mesa-vdpau"
+
+
+post_install()
+{
+    mhwd-gpu --check
+}
+
+post_remove()
+{
+    mhwd-gpu --check
+}
+
