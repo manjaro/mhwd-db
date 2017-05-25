@@ -11,8 +11,9 @@ VENDORIDS="8086"
 DEVICEIDS="*"
 BLACKLISTEDDEVICEIDS="0be1 8108"
 
+
 # Conflicts with other mhwd configs
-MHWDCONFLICTS="video-hybrid-intel-nvidia-bumblebee"
+MHWDCONFLICTS="video-hybrid-intel-amdgpu-prime video-hybrid-intel-radeon-prime video-hybrid-intel-nouveau-prime video-hybrid-intel-ati-bumblebee video-hybrid-intel-nouveau-bumblebee video-hybrid-intel-nvidia-340xx-bumblebee video-hybrid-intel-nvidia-bumblebee"
 
 # Dependencies
 DEPENDS="xf86-video-intel vulkan-intel libva-mesa-driver"

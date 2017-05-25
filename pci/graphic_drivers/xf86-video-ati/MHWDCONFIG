@@ -10,13 +10,14 @@ CLASSIDS="0300 0380"
 VENDORIDS="1002"
 DEVICEIDS=">/var/lib/mhwd/ids/pci/ati.ids"
 
+
 # Conflicts with other mhwd configs
-MHWDCONFLICTS="video-hybrid-intel-ati-bumblebee"
+MHWDCONFLICTS="video-catalyst  video-hybrid-intel-radeon-prime video-hybrid-radeon-amdgpu-prime video-hybrid-intel-ati-bumblebee"
 
 # Dependencies
-
 DEPENDS="xf86-video-ati libva-mesa-driver libva-vdpau-driver mesa-vdpau"
 DEPENDS_64="lib32-libva-vdpau-driver lib32-mesa-vdpau"
+
 
 pre_install()
 {

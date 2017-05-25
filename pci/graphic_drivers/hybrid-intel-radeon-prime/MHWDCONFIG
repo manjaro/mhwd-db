@@ -19,7 +19,7 @@ DEVICEIDS=">/var/lib/mhwd/ids/pci/ati.ids"
 
 
 # Conflicts with other mhwd configs
-MHWDCONFLICTS="video-intel video-ati video-hybrid-intel-ati-bumblebee"
+MHWDCONFLICTS="video-intel video-ati video-catalyst video-hybrid-intel-ati-bumblebee"
 
 # Dependencies
 DEPENDS="xf86-video-ati xf86-video-intel vulkan-intel libva-mesa-driver libva-vdpau-driver mesa-vdpau"

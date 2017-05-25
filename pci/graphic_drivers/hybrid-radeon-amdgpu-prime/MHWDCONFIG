@@ -16,8 +16,9 @@ CLASSIDS="0300 0380"
 VENDORIDS="1002"
 DEVICEIDS=">/var/lib/mhwd/ids/pci/amdgpu.ids"
 
+
 # Conflicts with other mhwd configs
-MHWDCONFLICTS="video-radeon video-amdgpu"
+MHWDCONFLICTS="video-radeon video-amdgpu video-catalyst"
 
 # Dependencies
 DEPENDS="xf86-video-ati xf86-video-amdgpu vulkan-radeon libva-mesa-driver libva-vdpau-driver mesa-vdpau"

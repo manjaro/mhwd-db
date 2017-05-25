@@ -19,7 +19,7 @@ DEVICEIDS="*"
 
 
 # Conflicts with other mhwd configs
-MHWDCONFLICTS="video-intel video-nouveau video-hybrid-intel-nvidia-bumblebee"
+MHWDCONFLICTS="video-intel video-nouveau video-nvidia video-nvidia-304xx video-nvidia-340xx video-hybrid-intel-nvidia-bumblebee video-hybrid-intel-nvidia-340xx-bumblebee"
 
 # Dependencies
 DEPENDS="xf86-video-intel xf86-video-nouveau vulkan-intel vulkan-radeon libva-mesa-driver libva-vdpau-driver mesa-vdpau"
