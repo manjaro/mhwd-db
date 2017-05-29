@@ -2,9 +2,9 @@
 
 NAME="video-hybrid-radeon-amdgpu-prime"
 INFO="Solution for hybrid AMD Radeon + AMD AMDGPU systems."
-VERSION="2017.03.12"
+VERSION="2017.05.29"
 FREEDRIVER="true"
-PRIORITY="6"
+PRIORITY="7"
 
 # AMD Radeon cards
 CLASSIDS="0300 0380"

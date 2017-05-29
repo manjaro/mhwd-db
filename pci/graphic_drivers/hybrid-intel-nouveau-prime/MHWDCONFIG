@@ -2,7 +2,7 @@
 
 NAME="video-hybrid-intel-nouveau-prime"
 INFO="Solution for hybrid Intel + Nvidia systems."
-VERSION="2017.03.12"
+VERSION="2017.05.29"
 FREEDRIVER="true"
 PRIORITY="6"
 

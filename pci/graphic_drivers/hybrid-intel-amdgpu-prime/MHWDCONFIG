@@ -2,9 +2,9 @@
 
 NAME="video-hybrid-intel-amdgpu-prime"
 INFO="Solution for hybrid Intel + AMD systems."
-VERSION="2017.03.12"
+VERSION="2017.05.29"
 FREEDRIVER="true"
-PRIORITY="6"
+PRIORITY="7"
 
 # Intel cards
 CLASSIDS="0300"
