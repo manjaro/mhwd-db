@@ -22,6 +22,7 @@ DEPENDS_64="lib32-catalyst-utils"
 DEPKMOD="catalyst"
 
 XORGFILE="/etc/X11/mhwd.d/catalyst.conf"
+ALT_XORGFILE="/etc/X11/xorg.conf"
 
 post_install()
 {
@@ -36,6 +37,10 @@ post_remove()
 {
 	if [ -e "${XORGFILE}" ]; then
 		rm "${XORGFILE}"
+	fi
+
+        if [ -f "${ALT_XORGFILE}" ]; then
+		rm "${ALT_XORGFILE}"
 	fi
 
 	mhwd-gpu --check
