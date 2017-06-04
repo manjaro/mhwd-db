@@ -22,7 +22,7 @@ DEVICEIDS="*"
 MHWDCONFLICTS="video-intel video-nouveau video-nvidia video-nvidia-304xx video-nvidia-340xx video-hybrid-intel-nvidia-bumblebee video-hybrid-intel-nvidia-340xx-bumblebee"
 
 # Dependencies
-DEPENDS="xf86-video-intel xf86-video-nouveau vulkan-intel vulkan-radeon libva-mesa-driver libva-vdpau-driver mesa-vdpau"
+DEPENDS="xf86-video-intel xf86-video-nouveau vulkan-intel libva-mesa-driver libva-vdpau-driver mesa-vdpau"
 DEPENDS_64="lib32-vulkan-intel lib32-libva-vdpau-driver lib32-mesa-vdpau"
 
 
@@ -35,4 +35,3 @@ post_remove()
 {
     mhwd-gpu --check
 }
-
