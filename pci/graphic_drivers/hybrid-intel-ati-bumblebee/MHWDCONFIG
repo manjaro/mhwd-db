@@ -9,7 +9,7 @@ PRIORITY="6"
 # AMD cards
 CLASSIDS="0300 0380"
 VENDORIDS="1002"
-DEVICEIDS="*"
+DEVICEIDS=">/var/lib/mhwd/ids/pci/ati.ids"
 
 # Intel cards
 CLASSIDS="0300"
