@@ -2,7 +2,7 @@
 
 NAME="video-intel"
 INFO="X.org intel video driver. Standard open source driver for intel graphic cards."
-VERSION="2017.03.12"
+VERSION="2017.03.24"
 FREEDRIVER="true"
 PRIORITY="2"
 
@@ -11,34 +11,31 @@ VENDORIDS="8086"
 DEVICEIDS="*"
 BLACKLISTEDDEVICEIDS="0be1 8108"
 
+
 # Conflicts with other mhwd configs
-MHWDCONFLICTS="video-hybrid-intel-nvidia-bumblebee video-hybrid-intel-nouveau-bumblebee"
+MHWDCONFLICTS="video-hybrid-intel-amdgpu-prime video-hybrid-intel-radeon-prime video-hybrid-intel-nouveau-prime video-hybrid-intel-ati-bumblebee video-hybrid-intel-nouveau-bumblebee video-hybrid-intel-nvidia-340xx-bumblebee video-hybrid-intel-nvidia-bumblebee"
 
 # Dependencies
-DEPENDS="xf86-video-intel"
+DEPENDS="xf86-video-intel vulkan-intel libva-mesa-driver"
+DEPENDS_64="lib32-vulkan-intel"
 
-XORGFILE="/etc/X11/mhwd.d/intel.conf"
+
+pre_install()
+{
+    # Cleaning up old installation files.
+    ## Xorg
+    if [ -f "/etc/X11/mhwd.d/intel.conf" ]
+        then
+            rm "/etc/X11/mhwd.d/intel.conf"
+    fi
+}
 
 post_install()
 {
-	# Create intel xorg configuration with enabled sna acceleration method
-	MHWD_HEADING "${XORGFILE}"
-	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "intel" "${XORGFILE}" 8086 "Option      \"AccelMethod\" \"sna\""
-	MHWD_ADD_DRI "${XORGFILE}"
-	MHWD_ADD_COMPOSITING "${XORGFILE}"
-	MHWD_ADD_BACKSPACE "${XORGFILE}"
-
-	# Enable next generation of DRI
-	sed -i "s/\tOption      \"DRI\"    \"true\"/\tOption      \"DRI3\"    \"1\"\n\tOption      \"DRI\"     \"3\"/g"  "${XORGFILE}"
-
-	mhwd-gpu --setxorg "${XORGFILE}"
+    mhwd-gpu --check
 }
 
 post_remove()
 {
-	if [ -e "${XORGFILE}" ]; then
-		rm "${XORGFILE}"
-	fi
-
-	mhwd-gpu --check
+    mhwd-gpu --check
 }

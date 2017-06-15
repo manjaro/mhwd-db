@@ -2,7 +2,7 @@
 
 NAME="video-amdgpu"
 INFO="X.org amdgpu video driver. Standard open source driver for AMD graphic cards."
-VERSION="2016.08.22"
+VERSION="2017.03.24"
 FREEDRIVER="true"
 PRIORITY="3"
 
@@ -10,51 +10,42 @@ CLASSIDS="0300 0380"
 VENDORIDS="1002"
 DEVICEIDS=">/var/lib/mhwd/ids/pci/amdgpu.ids"
 
-# Dependencies
-DEPENDS="xf86-video-amdgpu"
 
-XORGFILE="/etc/X11/mhwd.d/amdgpu.conf"
-MODULESFILE="/etc/modules-load.d/mhwd-amdgpu.conf"
-MODULESBLACKLIST="/etc/modprobe.d/mhwd-amdgpu.conf"
+# Conflicts with other mhwd configs
+MHWDCONFLICTS="video-catalyst video-hybrid-intel-amdgpu-prime video-hybrid-radeon-amdgpu-prime"
+
+# Dependencies
+DEPENDS="xf86-video-amdgpu vulkan-radeon libva-mesa-driver libva-vdpau-driver mesa-vdpau"
+DEPENDS_64="lib32-vulkan-radeon lib32-libva-vdpau-driver lib32-mesa-vdpau"
+
+
+pre_install()
+{
+    # Cleaning up old installation files.
+    ## Xorg
+    if [ -f "/etc/X11/mhwd.d/amdgpu.conf" ]
+        then
+            rm "/etc/X11/mhwd.d/amdgpu.conf"
+    fi
+
+    ## Modules
+    if [ -f "/etc/modules-load.d/mhwd-amdgpu.conf" ]
+        then
+            rm "/etc/modules-load.d/mhwd-amdgpu.conf"
+    fi
+
+    if [ -f "/etc/modprobe.d/mhwd-amdgpu.conf" ]
+        then
+            rm "/etc/modprobe.d/mhwd-amdgpu.conf"
+    fi
+}
 
 post_install()
 {
-	MHWD_HEADING "${XORGFILE}"
-	MHWD_ADD_DEVICE_SECTION_FOR_EACH_BUSID "amdgpu" "${XORGFILE}" 1002
-	MHWD_ADD_DRI "${XORGFILE}"
-	MHWD_ADD_COMPOSITING "${XORGFILE}"
-	MHWD_ADD_BACKSPACE "${XORGFILE}"
-
-	# Enable next generation of DRI
-	sed -i "s/\tOption      \"DRI\"    \"true\"/\tOption      \"DRI3\"    \"1\"\n\tOption      \"DRI\"     \"3\"/g"  "${XORGFILE}"
-
-	MHWD_HEADING "${MODULESFILE}"
-	echo "amdgpu" >> "${MODULESFILE}"
-
-	MHWD_HEADING "${MODULESBLACKLIST}"
-	echo "blacklist radeon" >> "${MODULESBLACKLIST}"
-
-	# Unload modules if X is not running
-	if [ ! "$(pgrep X)" ];	then
-		rmmod -f radeon
-	fi
-
-	modprobe amdgpu
-
-	mhwd-gpu --setxorg "${XORGFILE}"
+    mhwd-gpu --check
 }
 
 post_remove()
 {
-	if [ -e "${XORGFILE}" ]; then
-		rm "${XORGFILE}"
-	fi
-	if [ -e "${MODULESFILE}" ]; then
-		rm "${MODULESFILE}"
-	fi
-	if [ -e "${MODULESBLACKLIST}" ]; then
-		rm "${MODULESBLACKLIST}"
-	fi
-
-	mhwd-gpu --check
+    mhwd-gpu --check
 }
