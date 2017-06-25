@@ -23,6 +23,8 @@ DEPKMOD="catalyst"
 
 XORGFILE="/etc/X11/mhwd.d/catalyst.conf"
 ALT_XORGFILE="/etc/X11/xorg.conf"
+MHWDGPU_BLCKLSTRADEON="/etc/modprobe.d/mhwd-gpu.conf"
+MHWDGPU_FRCFGLRX="/etc/modules-load.d/mhwd-gpu.conf"
 
 post_install()
 {
@@ -41,6 +43,14 @@ post_remove()
 
         if [ -f "${ALT_XORGFILE}" ]; then
 		rm "${ALT_XORGFILE}"
+	fi
+
+        if [ -f "${MHWDGPU_BLCKLSTRADEON}" ]; then
+		sed -i '/^blacklist radeon/d' "${MHWDGPU_BLCKLSTRADEON}"
+	fi
+
+        if [ -f "${MHWDGPU_FRCFGLRX}" ]; then
+		sed -i '/^fglrx/d' "${MHWDGPU_FRCFGLRX}"
 	fi
 
 	mhwd-gpu --check
