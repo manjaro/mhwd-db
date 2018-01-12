@@ -24,6 +24,8 @@ DEPENDS_64="lib32-nvidia-340xx-utils"
 DEPKMOD="nvidia-340xx"
 
 XORGFILE="/etc/X11/mhwd.d/nvidia.conf"
+MHWDGPU_BLCKLSTNVIDIA="/etc/modprobe.d/mhwd-gpu.conf"
+MHWDGPU_MODLDNVIDIA="/etc/modules-load.d/mhwd-gpu.conf"
 
 fix_screen_flickering()
 {
@@ -48,6 +50,17 @@ post_remove()
 {
 	if [ -e "${XORGFILE}" ]; then
 		rm "${XORGFILE}"
+	fi
+
+	if [ -f "${MHWDGPU_BLCKLSTNVIDIA}" ]; then
+		sed -i '/^blacklist nouveau/d' "${MHWDGPU_BLCKLSTNVIDIA}"
+		sed -i '/^blacklist ttm/d' "${MHWDGPU_BLCKLSTNVIDIA}"
+		sed -i '/^blacklist drm_kms_helper/d' "${MHWDGPU_BLCKLSTNVIDIA}"
+		sed -i '/^blacklist drm/d' "${MHWDGPU_BLCKLSTNVIDIA}"
+	fi
+
+	if [ -f "${MHWDGPU_MODLDNVIDIA}" ]; then
+		sed -i '/^nvidia/d' "${MHWDGPU_MODLDNVIDIA}"
 	fi
 
 	mhwd-gpu --check
