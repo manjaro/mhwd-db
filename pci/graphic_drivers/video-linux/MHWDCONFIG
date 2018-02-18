@@ -10,14 +10,11 @@ PRIORITY="3"
 VENDORIDS="1002 8086 10de"
 
 # CLASSID 03=Display controller
-# 00=VGA compatible controller 02=3D controller	80=Display controller
+# 00=VGA compatible controller 02=3D controller 80=Display controller
 CLASSIDS="0300 0380 0302"
 
 # DEVICEIDS *=we want to use the whole range of devices from these vendors
 DEVICEIDS="*"
-
-# Conflicts with other mhwd configs
-MHWDCONFLICTS="video-catalyst"
 
 # Dependencies
 DEPENDS="xf86-video-ati
