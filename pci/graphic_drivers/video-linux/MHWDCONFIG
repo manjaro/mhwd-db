@@ -1,0 +1,95 @@
+# mhwd Driver Config
+
+NAME="video-linux"
+INFO="Standard open source drivers."
+VERSION="2018.02.15"
+FREEDRIVER="true"
+PRIORITY="3"
+
+# VENDOR AMD=1002 INTEL=8086 NVIDIA=10de
+VENDORIDS="1002 8086 10de"
+
+# CLASSID 03=Display controller
+# 00=VGA compatible controller 02=3D controller 80=Display controller
+CLASSIDS="0300 0380 0302"
+
+# DEVICEIDS *=we want to use the whole range of devices from these vendors
+DEVICEIDS="*"
+
+# Dependencies
+DEPENDS="xf86-video-ati
+    xf86-video-amdgpu
+    xf86-video-intel
+    xf86-video-nouveau
+    vulkan-intel
+    vulkan-radeon
+    libva-mesa-driver
+    libva-vdpau-driver
+    mesa-vdpau"
+
+DEPENDS_64="lib32-vulkan-intel
+    lib32-vulkan-radeon
+    lib32-libva-vdpau-driver
+    lib32-mesa-vdpau"
+
+
+post_install()
+{
+    # Set an array of old mhwd scripts, we will replace with this one
+    predecessor=(video-hybrid-intel-amdgpu-prime
+        video-hybrid-intel-nouveau-prime
+        video-hybrid-intel-radeon-prime 
+        video-hybrid-radeon-amdgpu-prime
+        video-ati
+        video-amdgpu
+        video-intel
+        video-nouveau)
+
+    # Another array of mhwd scripts we dont even support anymore
+    legacy_bumblebee=(video-hybrid-intel-nouveau-bumblebee
+        video-hybrid-intel-ati-bumblebee)
+
+    # Find and remove old mhwd scripts, without any need to interact with mhwd 
+    for (( i=0; i<${#predecessor[@]}; i++ ));
+        do
+            if [ -f "/var/lib/mhwd/local/pci/${predecessor[${i}]}/MHWDCONFIG" ]; then
+                    rm "/var/lib/mhwd/local/pci/${predecessor[${i}]}/MHWDCONFIG"
+            fi
+    done
+
+    # Find and remove unsupported mhwd-scripts with all components.
+    # Dont deal with pacman here!
+    for (( i=0; i<${#legacy_bumblebee[@]}; i++ ));
+        do
+            if [ -f "/var/lib/mhwd/local/pci/${legacy_bumblebee[${i}]}/MHWDCONFIG" ]; then
+                    rm "/var/lib/mhwd/local/pci/${legacy_bumblebee[${i}]}/MHWDCONFIG"
+                    
+                    if [ -f "/etc/modprobe.d/mhwd-bbswitch.conf" ]; then
+                            rm "/etc/modprobe.d/mhwd-bbswitch.conf"
+                    fi
+                    if [ -f "/etc/bumblebee/xorg.conf.ati" ]; then
+                            rm "/etc/bumblebee/xorg.conf.ati"
+                    fi
+                    if [ -f "/etc/X11/mhwd.d/intel.conf" ]; then
+                            rm "/etc/X11/mhwd.d/intel.conf"
+                    fi
+                    if [ -f "/etc/bumblebee/xorg.conf.nouveau" ]; then
+                            rm "/etc/bumblebee/xorg.conf.nouveau"
+                    fi
+                    if [ -f "/etc/X11/mhwd.d/intel.conf" ]; then
+                            rm "/etc/X11/mhwd.d/intel.conf"
+                    fi
+                    if [ -f "/etc/modprobe.d/mhwd-nouveau.conf" ]; then
+                            rm "/etc/modprobe.d/mhwd-nouveau.conf"
+                    fi
+                    systemctl disable --now bumblebeed.service
+            fi
+    done
+
+    mhwd-gpu --check
+}
+
+post_remove()
+{
+    mhwd-gpu --check
+}
