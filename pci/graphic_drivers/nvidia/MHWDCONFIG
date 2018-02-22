@@ -2,7 +2,7 @@
 
 NAME="video-nvidia"
 INFO="Closed source NVIDIA drivers for linux."
-VERSION="2017.03.12"
+VERSION="2018.02.22"
 FREEDRIVER="false"
 PRIORITY="5"
 
@@ -65,6 +65,8 @@ post_remove()
 
 	if [ -f "${MHWDGPU_BLCKLSTNVIDIA}" ]; then
 		sed -i '/^blacklist nouveau/d' "${MHWDGPU_BLCKLSTNVIDIA}"
+		sed -i '/^blacklist nvidiafb/d' "${MHWDGPU_BLCKLSTNVIDIA}"
+		sed -i '/^blacklist rivafb/d' "${MHWDGPU_BLCKLSTNVIDIA}"
 		sed -i '/^blacklist ttm/d' "${MHWDGPU_BLCKLSTNVIDIA}"
 		sed -i '/^blacklist drm_kms_helper/d' "${MHWDGPU_BLCKLSTNVIDIA}"
 		sed -i '/^blacklist drm/d' "${MHWDGPU_BLCKLSTNVIDIA}"
