@@ -2,7 +2,7 @@
 
 NAME="video-hybrid-intel-nvidia-bumblebee"
 INFO="Hybrid bumblebee solution for NVIDIA Optimus Technology - Closed source NVIDIA driver & open source intel driver."
-VERSION="2017.03.12"
+VERSION="2018.02.22"
 FREEDRIVER="false"
 PRIORITY="8"
 
@@ -68,6 +68,7 @@ post_install()
 	echo "blacklist ttm" >> "${MODULESBLACKLIST}"
 	echo "blacklist drm_kms_helper" >> "${MODULESBLACKLIST}"
 	echo "blacklist drm" >> "${MODULESBLACKLIST}"
+	echo "blacklist nvidiafb" >> "${MODULESBLACKLIST}"
 
 	# Unload modules if X is not running
 	if [ ! "$(pgrep X)" ];	then
@@ -78,6 +79,7 @@ post_install()
 		rmmod -f ttm
 		rmmod -f drm_kms_helper
 		rmmod -f drm
+		rmmod -f nvidiafb
 	fi
 
 	modprobe bbswitch
