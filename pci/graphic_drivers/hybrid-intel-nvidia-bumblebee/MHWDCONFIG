@@ -65,10 +65,11 @@ post_install()
 	echo "blacklist nvidia" >> "${MODULESBLACKLIST}"
 	echo "blacklist nvidia-modeset" >> "${MODULESBLACKLIST}"
 	echo "blacklist nvidia-uvm" >> "${MODULESBLACKLIST}"
+	echo "blacklist nvidiafb" >> "${MODULESBLACKLIST}"
+	echo "blacklist rivafb" >> "${MODULESBLACKLIST}"
 	echo "blacklist ttm" >> "${MODULESBLACKLIST}"
 	echo "blacklist drm_kms_helper" >> "${MODULESBLACKLIST}"
 	echo "blacklist drm" >> "${MODULESBLACKLIST}"
-	echo "blacklist nvidiafb" >> "${MODULESBLACKLIST}"
 
 	# Unload modules if X is not running
 	if [ ! "$(pgrep X)" ];	then
@@ -76,10 +77,11 @@ post_install()
 		rmmod -f nvidia
 		rmmod -f nvidia-modeset
 		rmmod -f nvidia-uvm
+		rmmod -f nvidiafb
+		rmmod -f rivafb
 		rmmod -f ttm
 		rmmod -f drm_kms_helper
 		rmmod -f drm
-		rmmod -f nvidiafb
 	fi
 
 	modprobe bbswitch
