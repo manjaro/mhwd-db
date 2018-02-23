@@ -2,7 +2,7 @@
 
 NAME="video-hybrid-intel-nvidia-340xx-bumblebee"
 INFO="Hybrid bumblebee solution for NVIDIA Optimus Technology - Closed source NVIDIA legacy driver & open source intel driver."
-VERSION="2018.02.22"
+VERSION="2018.02.23"
 FREEDRIVER="false"
 PRIORITY="7"
 
@@ -64,8 +64,6 @@ post_install()
 	echo "blacklist nvidia" >> "${MODULESBLACKLIST}"
 	echo "blacklist nvidia-modeset" >> "${MODULESBLACKLIST}"
 	echo "blacklist nvidia-uvm" >> "${MODULESBLACKLIST}"
-	echo "blacklist nvidiafb" >> "${MODULESBLACKLIST}"
-	echo "blacklist rivafb" >> "${MODULESBLACKLIST}"
 	echo "blacklist ttm" >> "${MODULESBLACKLIST}"
 	echo "blacklist drm_kms_helper" >> "${MODULESBLACKLIST}"
 	echo "blacklist drm" >> "${MODULESBLACKLIST}"
@@ -76,8 +74,6 @@ post_install()
 		rmmod -f nvidia
 		rmmod -f nvidia-modeset
 		rmmod -f nvidia-uvm
-		rmmod -f nvidiafb
-		rmmod -f rivafb
 		rmmod -f ttm
 		rmmod -f drm_kms_helper
 		rmmod -f drm
