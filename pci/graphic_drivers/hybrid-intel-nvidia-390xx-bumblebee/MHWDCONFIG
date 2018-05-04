@@ -1,15 +1,15 @@
 # mhwd Driver Config
 
-NAME="video-hybrid-intel-nvidia-340xx-bumblebee"
-INFO="Hybrid bumblebee solution for NVIDIA Optimus Technology - Closed source NVIDIA legacy driver & open source intel driver."
+NAME="video-hybrid-intel-nvidia-390xx-bumblebee"
+INFO="Hybrid bumblebee solution for NVIDIA Optimus Technology - Closed source NVIDIA driver & open source intel driver."
 VERSION="2018.05.04"
 FREEDRIVER="false"
-PRIORITY="7"
+PRIORITY="8"
 
 # NVIDIA cards
 CLASSIDS="0300 0302"
 VENDORIDS="10de"
-DEVICEIDS=">/var/lib/mhwd/ids/pci/nvidia-340xx.ids"
+DEVICEIDS=">/var/lib/mhwd/ids/pci/nvidia-390xx.ids"
 
 # Intel cards
 CLASSIDS="0300"
@@ -18,13 +18,13 @@ DEVICEIDS="*"
 BLACKLISTEDDEVICEIDS="0be1 8108"
 
 # Conflicts with other mhwd configs
-MHWDCONFLICTS="video-intel video-nvidia video-nvidia-304xx video-nvidia-340xx video-nvidia-390xx video-hybrid-intel-nvidia-bumblebee video-hybrid-intel-nvidia-304xx-bumblebee video-hybrid-intel-nvidia-390xx-bumblebee video-hybrid-intel-nouveau-bumblebee"
+MHWDCONFLICTS="video-intel video-nvidia video-nvidia-304xx video-nvidia-340xx video-nvidia-390xx video-hybrid-intel-nvidia-bumblebee video-hybrid-intel-nouveau-bumblebee"
 
 # Dependencies
-DEPENDS="bumblebee nvidia-340xx-utils xf86-video-intel"
-[[ -d /run/openrc ]] && DEPENDS="bumblebee-openrc nvidia-340xx-utils xf86-video-intel"
-DEPENDS_64="lib32-primus lib32-nvidia-340xx-utils"
-DEPKMOD="nvidia-340xx bbswitch"
+DEPENDS="bumblebee nvidia-390xx-utils xf86-video-intel"
+[[ -d /run/openrc ]] && DEPENDS="bumblebee-openrc nvidia-390xx-utils xf86-video-intel"
+DEPENDS_64="lib32-primus lib32-nvidia-390xx-utils"
+DEPKMOD="nvidia-390xx bbswitch"
 
 XORGFILE="/etc/X11/mhwd.d/intel.conf"
 BXORGFILE="/etc/bumblebee/xorg.conf.nvidia"
@@ -58,6 +58,7 @@ post_install()
 
 	MHWD_HEADING "${MODULESFILE}"
 	echo "options bbswitch load_state=0 unload_state=0" >> "${MODULESFILE}"
+
 
 	MHWD_HEADING "${MODULESBLACKLIST}"
 	echo "blacklist nouveau" >> "${MODULESBLACKLIST}"

@@ -2,7 +2,7 @@
 
 NAME="video-nvidia-304xx"
 INFO="Closed source NVIDIA legacy drivers for linux."
-VERSION="2018.02.23"
+VERSION="2018.05.04"
 FREEDRIVER="false"
 PRIORITY="3"
 
@@ -16,7 +16,7 @@ CONFLICTS_64="lib32-nvidia-utils lib32-nvidia-340xx-utils"
 CONKMOD="nvidia nvidia-340xx"
 
 # Conflicts with other mhwd configs
-MHWDCONFLICTS="video-hybrid-intel-nvidia-bumblebee video-nvidia video-nvidia-340xx video-hybrid-intel-nvidia-340xx-bumblebee"
+MHWDCONFLICTS="video-hybrid-intel-nvidia-bumblebee video-nvidia video-nvidia-340xx video-nvidia video-nvidia-390xx video-nvidia-340xx video-nvidia-390xx video-nvidia"
 
 # Dependencies
 DEPENDS="nvidia-304xx-utils"
